@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "384919345853",
+    "project_id": "softec-a30ef",
+    "storage_bucket": "softec-a30ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:384919345853:android:278d9dacf15b46a2fc75d4",
+        "android_client_info": {
+          "package_name": "com.example.softec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "384919345853-pmlki65t0mrqev0pqqmpiqk9otskjja3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6AqmR25p9Ym-66JF461pCLzLPKHjMhz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "384919345853-pmlki65t0mrqev0pqqmpiqk9otskjja3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
