@@ -19,7 +19,7 @@ var obscureText = true.obs;
 var defaultObscureText = false.obs;
 RxInt pageIndex = RxInt(0);
 final pages = [
-  HomePage(),
+  const HomePage(),
   const MyJobs(),
   const PostTasksScreen(),
   const PostTasksScreen(),

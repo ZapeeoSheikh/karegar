@@ -16,7 +16,6 @@ import '../utils/widgets/widgets_imports.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
@@ -57,35 +56,35 @@ class HomePage extends StatelessWidget {
                     height: MediaQuery.of(context).size.height,
                     width: double.infinity,
                     child: StreamBuilder<QuerySnapshot>(
-                        stream: jobsViewModel.jobsCollection.where('jobStatus', isEqualTo: 'active').snapshots(),
+                        stream: jobsViewModel.jobsCollection
+                            .where('jobStatus', isEqualTo: 'active')
+                            .snapshots(),
                         builder: (context, snapshot) {
-                      if (snapshot.hasError) {
-                        return Text('Something went wrong');
-                      }
-                      if(snapshot.data!.size == 0){
-                        return Text('No jobs');
-                      }
+                          if (snapshot.hasError) {
+                            return Text('Something went wrong');
+                          }
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Text("Loading");
+                          }
 
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text("Loading");
-                      }
-                      return ListView(
-                        children: snapshot.data!.docs
-                            .map((DocumentSnapshot document) {
-                          Map<String, dynamic> data =
-                              document.data()! as Map<String, dynamic>;
-                          Job job = Job.fromJson(data);
-                          return jobTile(
-                              name: job.name,
-                              imageUrl: job.imageUrl,
-                              location: job.address,
-                              date: job.date,
-                              totalBids: job.numberOfBids.toString(),
-                              budget: job.budget,
-                              title: job.title);
-                        }).toList(),
-                      );
-                    }),
+                          return ListView(
+                            children: snapshot.data!.docs
+                                .map((DocumentSnapshot document) {
+                              Map<String, dynamic> data =
+                                  document.data()! as Map<String, dynamic>;
+                              Job job = Job.fromJson(data);
+                              return jobTile(
+                                  name: job.name,
+                                  imageUrl: job.imageUrl,
+                                  location: job.address,
+                                  date: job.date,
+                                  totalBids: job.numberOfBids.toString(),
+                                  budget: job.budget,
+                                  title: job.title);
+                            }).toList(),
+                          );
+                        }),
                   )),
       ),
     );
