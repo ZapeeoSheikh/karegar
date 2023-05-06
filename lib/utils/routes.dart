@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:softec/view/auth_page.dart';
 import 'package:softec/view/post_tasks/post_task_screen.dart';
 
 import '../view/bottom_navigation/view/bottom_nav.dart';
@@ -19,7 +18,6 @@ class Routes {
       //Add route here
       homePage: (context) => const HomePage(),
       searchPage: (context) => const SearchPage(),
-      authPage: (context) => const AuthenticationPage(),
       bottomNav: (context) => const BottomNavigation(),
       postTask: (context) => const PostTasksScreen(),
       // authPage: (context) => const (),

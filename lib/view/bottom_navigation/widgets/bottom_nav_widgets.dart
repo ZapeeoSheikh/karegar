@@ -1,3 +1,4 @@
+import 'package:softec/utils/r_colors.dart';
 import 'package:softec/utils/widgets/widgets_imports.dart';
 
 import '../../../utils/constants.dart';
@@ -29,7 +30,7 @@ class BottomNavigationItem extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Icon(icon,color: pageIndex.value == index ? KColors.kPrimary : KColors.kBlack,),
+              Icon(icon, color: pageIndex.value == index ? KColors.kPrimary : MyColor.inActive,),
               // Image.asset(,
               //   icon,
               //   fit: BoxFit.cover,
@@ -40,7 +41,7 @@ class BottomNavigationItem extends StatelessWidget {
                 text: title,
                 textStyle: KTextStyles().subHeading(
                   fontSize: 12,
-                  textColor: pageIndex.value == index ? KColors.kPrimary : KColors.kBlack,
+                  textColor: pageIndex.value == index ? KColors.kPrimary : MyColor.inActive,
                 ),
               ),
             ],

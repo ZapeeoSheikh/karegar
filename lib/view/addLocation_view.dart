@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:softec/view/home_page.dart';
 import '../utils/r_colors.dart';
 import 'chooseRole_view.dart';
 import 'login_view.dart';
@@ -33,11 +34,7 @@ class _AddLocationState extends State<AddLocation> {
     if (text.isEmpty) {
       return 'Can\'t be empty';
     }
-    else if (text.length < 10) {
-      return 'Too Short; Min 10 characters';
-    } else if (text.length > 20) {
-      return 'Too Long; Max 20 characters';
-    } else
+   else
       return null;
   }
   String? _currentAddress;
@@ -123,7 +120,7 @@ class _AddLocationState extends State<AddLocation> {
                             if (_errorText1 ==
                                 null) {
                               print("Submit data");
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) => AddLocation()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
                               //
                             } else {
                               error1 = true;
