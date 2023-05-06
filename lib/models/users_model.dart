@@ -9,6 +9,7 @@ class Users {
   final List<dynamic> coordinates;
   final String userType;
   final List<dynamic> skills;
+  final String location;
   Users(
       {required this.userName,
       required this.userEmail,
@@ -20,6 +21,7 @@ class Users {
       required this.contactNumber,
       required this.userType,
       required this.skills,
+      required this.location,
       });
 
   Map<String, dynamic> toJson() {
@@ -34,6 +36,7 @@ class Users {
       'contactNumber' : contactNumber,
       'userType' : userType,
       'skills' : skills,
+      'location' : location
     };
   }
 
@@ -49,5 +52,6 @@ class Users {
           coordinates: json['coordinates'] as List<dynamic>,
           userType: json['userType'] as String,
           skills: json['skills'] as List<dynamic>,
+          location: json['location'],
         );
 }

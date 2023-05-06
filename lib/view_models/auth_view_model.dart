@@ -43,6 +43,7 @@ class AuthViewModel extends ChangeNotifier {
         contactNumber: userType == UserType.customer ? 'N/A' : phoneNumber!,
         userType: userType == UserType.customer ? 'customer' : 'tradePerson',
         skills: userType == UserType.customer ? ['N/A'] : skills!,
+        location: '',
       );
       await usersCollection.doc(credentials.user!.uid).set(newUser.toJson());
       authState = AuthState.logedIn;

@@ -7,7 +7,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
+// import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -42,9 +42,9 @@ class PostTaskDetailController extends GetxController{
 
       image.value = File(_image.path);
 
-      File rotatedImage = await FlutterExifRotation.rotateImage(path: image.value!.path);
+      // File rotatedImage = await FlutterExifRotation.rotateImage(path: image.value!.path);
 
-      base64Image.value = await convertToBase64(rotatedImage);
+      // base64Image.value = await convertToBase64(rotatedImage);
 
       update();
     }

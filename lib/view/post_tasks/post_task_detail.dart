@@ -151,9 +151,7 @@ class PostTaskDetailScreen extends StatelessWidget {
                               // ),
                               // Spacer(),
                               heightBox(0.03),
-                              Obx(
-                                () {
-                                  return Center(
+                              Center(
                                     child: GestureDetector(
                                       onTap: () async {
                                         postTaskDetailController.pickFromCamera();
@@ -261,9 +259,7 @@ class PostTaskDetailScreen extends StatelessWidget {
                                       //   ],
                                       // ),
                                     ),
-                                  );
-                                }
-                              ),
+                                  ),
 
                               heightBox(0.1),
                               PrimaryButton(

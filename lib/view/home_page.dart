@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:softec/models/users_model.dart';
 import 'package:softec/utils/r_colors.dart';
 
 import 'package:softec/utils/widgets/custom_app_bar.dart';
@@ -13,11 +16,11 @@ import '../utils/widgets/widgets_imports.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
+  
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<JobsViewModel>(context, listen: false).showPostedJobs();
+    JobsViewModel jobsViewModel = JobsViewModel();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColor.mainColor1,
@@ -51,26 +54,39 @@ class HomePage extends StatelessWidget {
                     ],
                   )
                 : SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  width: double.infinity,
-                  child: Consumer<JobsViewModel>(builder: (pCtx, provider, child) {
-                      
-                      return ListView.builder(
-                          itemCount: provider.postedJobs.length,
-                          itemBuilder: (lwCtx, index) {
-                            Job postedJob = provider.postedJobs[index];
-                            return 
-                            jobTile(
-                                name: postedJob.name,
-                                imageUrl: postedJob.imageUrl,
-                                location: postedJob.address,
-                                date: postedJob.date,
-                                totalBids: postedJob.numberOfBids.toString(),
-                                budget: postedJob.budget,
-                                title: postedJob.title);
-                          });
+                    height: MediaQuery.of(context).size.height,
+                    width: double.infinity,
+                    child: StreamBuilder<QuerySnapshot>(
+                        stream: jobsViewModel.jobsCollection.where('jobStatus', isEqualTo: 'active').snapshots(),
+                        builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Text('Something went wrong');
+                      }
+                      if(snapshot.data!.size == 0){
+                        return Text('No jobs');
+                      }
+
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Text("Loading");
+                      }
+                      return ListView(
+                        children: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
+                          Job job = Job.fromJson(data);
+                          return jobTile(
+                              name: job.name,
+                              imageUrl: job.imageUrl,
+                              location: job.address,
+                              date: job.date,
+                              totalBids: job.numberOfBids.toString(),
+                              budget: job.budget,
+                              title: job.title);
+                        }).toList(),
+                      );
                     }),
-                )),
+                  )),
       ),
     );
   }
@@ -168,7 +184,7 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                   date,
+                    date,
                     style: GoogleFonts.roboto(
                         fontSize: 14.sp,
                         letterSpacing: 0.6,
