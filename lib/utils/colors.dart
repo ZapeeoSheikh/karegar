@@ -16,16 +16,16 @@ class KColors {
   static const MaterialColor primaryColor = MaterialColor(
     0xfffeee00,
     <int, Color>{
-      50: Color(0xfffeee00),
-      100: Color(0xfffeee00),
-      200: Color(0xfffeee00),
-      300: Color(0xfffeee00),
-      400: Color(0xfffeee00),
-      500: Color(0xfffeee00),
-      600: Color(0xfffeee00),
-      700: Color(0xfffeee00),
-      800: Color(0xfffeee00),
-      900: Color(0xfffeee00),
+      50: Color(0xff258D60),
+      100: Color(0xff258D60),
+      200: Color(0xff258D60),
+      300: Color(0xff258D60),
+      400: Color(0xff258D60),
+      500: Color(0xff258D60),
+      600: Color(0xff258D60),
+      700: Color(0xff258D60),
+      800: Color(0xff258D60),
+      900: Color(0xff258D60),
     },
   );
 }

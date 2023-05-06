@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../utils/routes.dart';
+import 'package:softec/utils/widgets/custom_app_bar.dart';
+import '../utils/colors.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,18 +14,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(
-            context,
-            Routes.searchPage,
-          );
-        },
-        child: Center(
-          child: Icon(
-            Icons.search,
-          ),
+    return SafeArea(
+      child: Scaffold(
+
+        appBar:CustomAppBar(
+            backgroundColor:  KColors.kPrimary,
+            title: "My App",
+            actions: [],
+
         ),
       ),
     );

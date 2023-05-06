@@ -1,11 +1,17 @@
-import 'dart:ui';
 
+
+
+
+
+
+
+import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
 class KTextStyles {
   static const normalText = FontWeight.w400;
-  static const mediumText = FontWeight.w500;
+  static const mediumText =  FontWeight.w500;
   static const semiBoldText = FontWeight.w600;
   static const boldText = FontWeight.w700;
 
