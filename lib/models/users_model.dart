@@ -4,12 +4,21 @@ class Users {
   final String userId;
   final String userDeviceId;
   final String imageUrl;
+  final String cnicNumber;
+  final String contactNumber;
+  final List<double> coordinates;
+  final String userType;
   Users(
       {required this.userName,
       required this.userEmail,
       required this.userId,
       required this.imageUrl,
-      required this.userDeviceId});
+      required this.userDeviceId,
+      required this.cnicNumber,
+      required this.coordinates,
+      required this.contactNumber,
+      required this.userType,
+      });
 
   Map<String, dynamic> toJson() {
     return {
@@ -18,6 +27,10 @@ class Users {
       'userId': userId,
       'userDeviceId': userDeviceId,
       'imageUrl' : imageUrl,
+      'cnicNumber' : cnicNumber,
+      'coordinates' : coordinates,
+      'contactNumber' : contactNumber,
+      'userType' : userType,
     };
   }
 
@@ -28,5 +41,9 @@ class Users {
           userId: json['userId'] as String,
           userDeviceId: json['userDeviceId'] as String,
           imageUrl: json['imageUrl'],
+          cnicNumber: json['cnicNumber'],
+          contactNumber: json['contactNumber'],
+          coordinates: json['coordinates'],
+          userType: json['userType'],
         );
 }

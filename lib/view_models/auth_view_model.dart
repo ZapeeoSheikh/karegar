@@ -9,29 +9,40 @@ import '../models/users_model.dart';
 enum AuthState { loading, logedIn, logedOut, unknown }
 
 class AuthViewModel extends ChangeNotifier {
-  Users? userModel;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('users');
   //-----States------------------------------------
   AuthState authState = AuthState.unknown;
 
-  Future<void> signUp(
-      {required String email,
-      required String password,
-      required String userName}) async {
+  //--------Customer Sign up -----------
+  Future<void> signUp({
+    required String email,
+    required String password,
+    required String userName,
+    required UserType userType,
+    String? cnic,
+    String? phoneNumber,
+    String? address,
+    List<double>? coordinates,
+  }) async {
     authState = AuthState.loading;
     notifyListeners();
     try {
       UserCredential credentials = await firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
       Users newUser = Users(
-          userName: userName,
-          userEmail: email,
-          userId: credentials.user!.uid,
-          userDeviceId: 'N/A',
-          imageUrl: 'N/A');
-      usersCollection.doc(credentials.user!.uid).set(newUser.toJson());
+        userName: userName,
+        userEmail: email,
+        userId: credentials.user!.uid,
+        imageUrl: 'N/A',
+        userDeviceId: 'N/A',
+        cnicNumber: userType == UserType.customer ? 'N/A' : cnic!,
+        coordinates: userType == UserType.customer ? [] : coordinates!,
+        contactNumber: userType == UserType.customer ? 'N/A' : phoneNumber!,
+        userType: userType == UserType.customer ? 'customer' : 'tradePerson',
+      );
+      await usersCollection.doc(credentials.user!.uid).set(newUser.toJson());
       authState = AuthState.logedIn;
       notifyListeners();
     } on FirebaseAuthException catch (error) {
@@ -54,6 +65,9 @@ class AuthViewModel extends ChangeNotifier {
       DocumentSnapshot getUser =
           await usersCollection.doc(firebaseAuth.currentUser!.uid).get();
       currentUser = Users.fromJson(getUser.data() as Map<String, dynamic>);
+      currentUserType = currentUser!.userType == 'customer'
+          ? UserType.customer
+          : UserType.tradePerson;
       authState = AuthState.logedIn;
       notifyListeners();
     } on FirebaseAuthException catch (error) {

@@ -6,6 +6,7 @@ import 'package:softec/view_models/auth_view_model.dart';
 
 class AuthenticationPage extends StatefulWidget {
   const AuthenticationPage({super.key});
+  
 
   @override
   State<AuthenticationPage> createState() => _AuthenticationPageState();
@@ -26,10 +27,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
               child: CircularProgressIndicator()) : ElevatedButton(
               onPressed: () async{
                 try {
-                  await Provider.of<AuthViewModel>(context, listen:  false).signUp(
-                      email: 'bilalkashif467@gmail.com',
-                      password: 'test12345',
-                      userName: 'Bilal Kashif');
+                 
                 } on CustomException catch (error) {
                   showErrorDialogue(error.prefix, error.message, context);
                 }
