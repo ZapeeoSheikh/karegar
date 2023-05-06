@@ -56,8 +56,8 @@ class BottomNavigation extends StatelessWidget {
                           },
                           child: BottomNavigationItem(
                             index: 0,
-                            title: 'Home',
-                            icon: Icons.home_outlined
+                            title: 'Biding',
+                            icon: Icons.currency_bitcoin
                           ),
                         ),
                         GestureDetector(
@@ -67,13 +67,13 @@ class BottomNavigation extends StatelessWidget {
                           },
                           child: BottomNavigationItem(
                             index: 1,
-                            title: 'My Tasks',
+                            title: 'My Jobs',
                               icon:  Icons.task_alt_outlined
                           ),
                         ),
                         BottomNavigationItem(
                           index: 2,
-                          title: 'Post a task',
+                          title: 'Post a job',
                             icon:  Icons.post_add_outlined
                         ),
                         BottomNavigationItem(
