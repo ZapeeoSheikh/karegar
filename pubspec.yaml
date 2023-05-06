@@ -46,6 +46,7 @@ dependencies:
   get:
   auto_size_text:
   lottie:
+  filter_list: ^1.0.2
 
 
 dev_dependencies:

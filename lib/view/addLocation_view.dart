@@ -11,12 +11,13 @@ import 'login_view.dart';
 
 
 class AddLocation extends StatefulWidget {
-  const AddLocation({Key? key, required this.name, required this.email, required this.password, required this.phone, required this.cnic,  }) : super(key: key);
+  const AddLocation({Key? key, required this.name, required this.email, required this.password, required this.phone, required this.cnic, required this.skills,  }) : super(key: key);
   final String name;
   final String email;
   final String password;
   final String phone;
   final String cnic;
+  final List skills;
   @override
   State<AddLocation> createState() => _AddLocationState();
 }
@@ -120,7 +121,7 @@ class _AddLocationState extends State<AddLocation> {
                             if (_errorText1 ==
                                 null) {
                               print("Submit data");
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                              // Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
                               //
                             } else {
                               error1 = true;
