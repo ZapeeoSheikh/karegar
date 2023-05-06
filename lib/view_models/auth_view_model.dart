@@ -46,6 +46,7 @@ class AuthViewModel extends ChangeNotifier {
         location: '',
       );
       await usersCollection.doc(credentials.user!.uid).set(newUser.toJson());
+      currentUser = newUser;
       authState = AuthState.logedIn;
       notifyListeners();
     } on FirebaseAuthException catch (error) {

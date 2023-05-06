@@ -223,6 +223,15 @@ class _SignupState extends State<Signup> {
                   height: 50.h,
                 ),
                 Consumer<AuthViewModel>(builder: (ctx, provider, child) {
+                  if (provider.authState == AuthState.loading) {
+                    return Center(
+                      child: SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
                   return GestureDetector(
                     onTap: () async {
                       try {
@@ -233,17 +242,18 @@ class _SignupState extends State<Signup> {
                             userType: widget.userType == 0
                                 ? UserType.customer
                                 : UserType.tradePerson);
-                        widget.userType == 0 ? Navigator.pushNamed(context, Routes.bottomNav) : 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AddPhone(
-                              name: _controller.text,
-                              email: _controller2.text,
-                              password: _controller3.text,
-                            ),
-                          ),
-                        );
+                        widget.userType == 0
+                            ? Navigator.pushNamed(context, Routes.bottomNav)
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddPhone(
+                                    name: _controller.text,
+                                    email: _controller2.text,
+                                    password: _controller3.text,
+                                  ),
+                                ),
+                              );
                       } on CustomException catch (error) {
                         showErrorDialogue(error.prefix, error.message, context);
                       }
