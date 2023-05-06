@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:softec/view/login_view.dart';
 import '../utils/r_colors.dart';
 
 class ChooseIdentity extends StatefulWidget {
@@ -21,7 +22,7 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
         children: [
           Spacer(),
           Text(
-            "Want to share food?",
+            "Please select your role",
             style: GoogleFonts.roboto(
                 fontSize: 24.sp,
                 color: MyColor.textColor1,
@@ -46,6 +47,7 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                     onTap: () {
                       user = 0;
                       print(user);
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => Login(userType: 0)));
                     },
                     child: Container(
                       height: 90.h,
@@ -55,7 +57,7 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Image(
-                        image: AssetImage("assets/icons/donor.png"),
+                        image: AssetImage("assets/icons/customer.png",), color: Colors.white,
                       ),
                     ),
                   ),
@@ -63,7 +65,7 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                     height: 10.h,
                   ),
                   Text(
-                    "Donnor",
+                    "Customer",
                     style: GoogleFonts.roboto(
                       fontSize: 16.sp,
                       color: MyColor.textColor1,
@@ -76,14 +78,14 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Donate your food",
+                        "Customer will be able",
                         style: GoogleFonts.roboto(
                           fontSize: 12.sp,
                           color: MyColor.inActive,
                         ),
                       ),
                       Text(
-                        "for needy",
+                        "post jobs",
                         style: GoogleFonts.roboto(
                           fontSize: 12.sp,
                           color: MyColor.inActive,
@@ -102,8 +104,7 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                     onTap: () {
                       user = 1;
                       print(user);
-                      Navigator.pushReplacementNamed(context, "/bottomNav");
-                      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavBar()));
+                       // Navigator.push(context, MaterialPageRoute(builder: (context) => Login(userType: 1)));
                     },
                     child: Container(
                       height: 90.h,
@@ -113,7 +114,7 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Image(
-                        image: AssetImage("assets/icons/approve.png"),
+                        image: AssetImage("assets/icons/buyer.png", ), color: MyColor.mainColor1,
                       ),
                     ),
                   ),
@@ -121,7 +122,7 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                     height: 10.h,
                   ),
                   Text(
-                    "Accepter",
+                    "Tradeperson",
                     style: GoogleFonts.roboto(
                       fontSize: 16.sp,
                       color: MyColor.textColor1,
@@ -134,14 +135,14 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Accept the food",
+                        "Tradeperson will be able",
                         style: GoogleFonts.roboto(
                           fontSize: 12.sp,
                           color: MyColor.inActive,
                         ),
                       ),
                       Text(
-                        "and pickup",
+                        "accept job posted",
                         style: GoogleFonts.roboto(
                           fontSize: 12.sp,
                           color: MyColor.inActive,
@@ -171,7 +172,6 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   SizedBox(width: 50,),
-                  Image(image: AssetImage("assets/Vector/hungery_girl.png"), width: 300,),
                 ],
               ),
 

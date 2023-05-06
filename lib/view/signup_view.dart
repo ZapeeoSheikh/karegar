@@ -6,160 +6,267 @@ import 'chooseRole_view.dart';
 import 'login_view.dart';
 
 class Signup extends StatefulWidget {
-  const Signup({Key? key}) : super(key: key);
+  const Signup({Key? key, }) : super(key: key);
 
   @override
   State<Signup> createState() => _SignupState();
 }
 
 class _SignupState extends State<Signup> {
+  bool showPassword = false;
+  bool error1 = false;
+  bool error2 = false;
+  bool error3 = false;
+  bool error4 = false;
+  bool error5 = false;
+  bool error6 = false;
+
+  final _controller = TextEditingController();
+  final _controller2 = TextEditingController();
+  final _controller3 = TextEditingController();
+  final _controller4 = TextEditingController();
+  final _controller5 = TextEditingController();
+  final _controller6 = TextEditingController();
+
+  String? get _errorText1 {
+    final text = _controller.value.text;
+
+    if (text.isEmpty) {
+      return 'Can\'t be empty';
+    }
+    else if (text.length < 3) {
+      return 'Too short';
+    } else if (text.length > 10) {
+      return 'Too Long';
+    } else
+      return null;
+  }
+  String? get _errorText2 {
+    final text = _controller2.value.text;
+    bool emailValid = RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(text);
+
+    if (text.isEmpty) {
+      return 'Can\'t be empty';
+    } else if (!emailValid) {
+      return 'Incorrect format';
+    } else
+      return null;
+  }
+  String? get _errorText3 {
+    final text = _controller3.value.text;
+
+    if (text.isEmpty) {
+      return 'Can\'t be empty';
+    }
+    else if (text.length < 5) {
+      return 'Too short';
+    }else
+      return null;
+  }
+  String? get _errorText4 {
+    final text = _controller4.value.text;
+
+    if (text.isEmpty) {
+      return 'Can\'t be empty';
+    }
+    else if (text.length < 10) {
+      return 'Too short';
+    } else if (text.length > 10) {
+      return 'Too Long';
+    } else
+      return null;
+  }
+  String? get _errorText5 {
+    final text = _controller5.value.text;
+
+    if (text.isEmpty) {
+      return 'Can\'t be empty';
+    }
+    else if (text.length < 10) {
+      return 'Too short';
+    } else if (text.length > 10) {
+      return 'Too Long';
+    } else
+      return null;
+  }
+  String? get _errorText6 {
+    final text = _controller6.value.text;
+
+    if (text.isEmpty) {
+      return 'Can\'t be empty';
+    }
+    else if (text.length < 10) {
+      return 'Too short';
+    } else if (text.length > 10) {
+      return 'Too Long';
+    } else
+      return null;
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: GestureDetector(
-        onTap: (){
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
-        child: Scaffold(
-            backgroundColor: Colors.white,
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Image(
-                    //   image: AssetImage("images/cloud.png"),
-                    //   width: 300,
-                    //   height: 300,
-                    // ),
-                    SizedBox(height: 80.h,),
+    return GestureDetector(
+      onTap: (){
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 80.h,),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                            "Sign up",
-                            style: GoogleFonts.roboto(fontSize: 36.sp),
-                          ),
-                        ],
-                    ),
-                    SizedBox(height: 80.h,),
-                    Theme(
-                      data: Theme.of(context).copyWith(primaryColor: Color(0xFF010101),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Sign up",
+                        style: GoogleFonts.roboto(fontSize: 36.sp),
                       ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          prefixIcon: ImageIcon(AssetImage("assets/icons/user.png",),size: 25,),
-                          hintText: "Enter your name",
-                          labelText: "Name",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: MyColor.radioButtonActive,),
-                            borderRadius: BorderRadius.circular(10),
+                    ],
+                  ),
+                  SizedBox(height: 80.h,),
+                  TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      prefixIcon: ImageIcon(AssetImage("assets/icons/user.png",),size: 25,),
+                      hintText: "Enter your name",
+                      labelText: "Name",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: MyColor.radioButtonActive,),
+                        borderRadius: BorderRadius.circular(10),
 
-                          )
-                        ),
                       ),
+                      errorText: error1 == false
+                          ? null
+                          : _errorText1,
                     ),
-                    SizedBox(height: 20.h,),
-                    TextField(
-                      decoration: InputDecoration(
+                  ),
+                  SizedBox(height: 20.h,),
+                  TextField(
+                    controller: _controller2,
+                    decoration: InputDecoration(
+                        errorText: error2 == false
+                            ? null
+                            : _errorText2,
                         prefixIcon: ImageIcon(AssetImage("assets/icons/mail.png")),
                         hintText: "Enter your email",
                         labelText: "Email",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: MyColor.radioButtonActive,),
-                            borderRadius: BorderRadius.circular(10),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: MyColor.radioButtonActive,),
+                          borderRadius: BorderRadius.circular(10),
 
-                          )
-                      ),
+                        )
                     ),
-                    SizedBox(height: 20.h,),
-                    TextField(
-                      decoration: InputDecoration(
+                  ),
+                  SizedBox(height: 20.h,),
+                  TextField(
+                    controller: _controller3,
+
+                    decoration: InputDecoration(
+                        errorText: error3 == false
+                            ? null
+                            : _errorText3,
                         prefixIcon: ImageIcon(AssetImage("assets/icons/lock.png")),
-                          suffixIcon:
-                          ImageIcon(AssetImage("assets/icons/eye.png")),
+                        suffixIcon:
+                        ImageIcon(AssetImage("assets/icons/eye.png")),
 
                         hintText: "Enter your password",
                         labelText: "Password",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: MyColor.radioButtonActive,),
-                              borderRadius: BorderRadius.circular(10),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: MyColor.radioButtonActive,),
+                          borderRadius: BorderRadius.circular(10),
 
-                      )
-                      ),
+                        )
                     ),
-                    SizedBox(height: 50.h,),
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ChooseIdentity()));
-                      },
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: 60.h,
-                              decoration: BoxDecoration(
-                                color: MyColor.mainColor1,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(child: Text("Sign Up", style: TextStyle(color: Colors.white),)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 40.h,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  ),
+                  SizedBox(height: 50.h,),
+                  GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        if (_controller
+                            .value
+                            .text
+                            .isNotEmpty
+                            && _controller2
+                                .value
+                                .text
+                                .isNotEmpty
+                            && _controller3
+                                .value
+                                .text
+                                .isNotEmpty
+                        ) {
+                          if (_errorText1 ==
+                              null && _errorText2 ==
+                              null && _errorText3 ==
+                              null ) {
+
+                            print("object");
+                          } else {
+                            error1 = true;
+                            error2 = true;
+                            error3 = true;
+                          }
+                        } else {
+                          error1 = true;
+                          error2 = true;
+                          error3 = true;
+                        }
+                      });                        },
+                    child: Row(
                       children: [
-                        Text(
-                          "Already have an account?",
-                          style: GoogleFonts.roboto(fontSize: 16.sp),
+                        Expanded(
+                          child: Container(
+                            height: 60.h,
+                            decoration: BoxDecoration(
+                              color: MyColor.mainColor1,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(child: Text("Sign Up", style: TextStyle(color: Colors.white),)),
+                          ),
                         ),
-                        SizedBox(width: 10.w,),
-                        GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
-                            },
-                            child: Text(
-                              "Sign In",
-                              style: GoogleFonts.roboto(fontSize: 16.sp, color: MyColor.mainColor1),
-                            )),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 40.h,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Already have an account?",
+                        style: GoogleFonts.roboto(fontSize: 16.sp),
+                      ),
+                      SizedBox(width: 10.w,),
+                      GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                          },
+                          child: Text(
+                            "Sign In",
+                            style: GoogleFonts.roboto(fontSize: 16.sp, color: MyColor.mainColor1),
+                          )),
+                    ],
+                  ),
+                ],
               ),
-            )
+            ),
+          )
         ),
-      )
-
-
-
-      // SafeArea(
-      //   child: Column(
-      //     children: [
-      //       Center(
-      //         child: Text(
-      //           "Login",
-      //           style: GoogleFonts.roboto(fontSize: 36.sp),
-      //         ),
-      //       )
-      //     ],
-      //   ),
-      // ),
+      ),
     );
   }
 }
