@@ -24,6 +24,7 @@ class CustomTextField extends StatelessWidget {
   final Color themeColor;
   final VoidCallback? prefixIconFunction;
   final String? Function(String?)? function;
+  final int maxLines;
 
   const CustomTextField({
     Key? key,
@@ -44,6 +45,7 @@ class CustomTextField extends StatelessWidget {
     this.suffixIconColor = KColors.kBlack,
     this.suffixIconSize = .06,
     this.onlyText = false,
+    this.maxLines = 1,
     this.onlyTextNumber = false,
     this.onlyNumberDot = false,
     this.onlyNumber = false,
@@ -59,7 +61,9 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         textInputAction: TextInputAction.next,
         cursorColor: themeColor,
+
         cursorWidth: 2.0,
+        maxLines: maxLines,
         cursorHeight: kHeight(.024),
         obscureText: isPassword ? obscureText.value : defaultObscureText.value,
         keyboardType: keyboardType,
@@ -134,6 +138,7 @@ class CustomTextField extends StatelessWidget {
                   child: prefixIcon,
                 )
               : null,
+          alignLabelWithHint: true,
           label: Text(label),
           labelStyle: TextStyle(color: themeColor),
           hintText: hintText,
