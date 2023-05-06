@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:softec/view/post_tasks/post_task_screen.dart';
 
 import '../view/home_page.dart';
+import '../view/profile.dart';
 
 /// App Constants
 
@@ -17,7 +18,7 @@ final pages = [
   const PostTasksScreen(),
   const PostTasksScreen(),
   // globalAccessToken == "guest" ? LoginScreen() : AccountScreen(),
-  HomePage(),
+  ProfileScreen(),
 
 ].obs;
 
