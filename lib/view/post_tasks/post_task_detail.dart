@@ -37,7 +37,7 @@ class PostTaskDetailScreen extends StatelessWidget {
                   title: title,
                 ),
                 body: PageView(
-                  physics: const NeverScrollableScrollPhysics(),
+                  // physics: const NeverScrollableScrollPhysics(),
                   controller: postTaskDetailController.pageController,
                   children: [
                     Container(
