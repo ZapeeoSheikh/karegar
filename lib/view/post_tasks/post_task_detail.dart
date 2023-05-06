@@ -152,114 +152,113 @@ class PostTaskDetailScreen extends StatelessWidget {
                               // Spacer(),
                               heightBox(0.03),
                               Center(
-                                    child: GestureDetector(
-                                      onTap: () async {
-                                        postTaskDetailController.pickFromCamera();
-                                        postTaskDetailController.update();
-                                      },
-                                      child:
-                                        Obx(
-                                          () {
-                                            return CustomText(
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    postTaskDetailController.pickFromCamera();
+                                    postTaskDetailController.update();
+                                  },
+                                  child: Obx(() {
+                                    return CustomText(
+                                      text: postTaskDetailController
+                                                  .base64Image.value ==
+                                              ""
+                                          ? "null"
+                                          : postTaskDetailController
+                                              .base64Image.value,
+                                      textStyle: KTextStyles().normal(),
+                                    );
+                                  }),
 
-                                              text: postTaskDetailController.base64Image.value==""?"null":
-                                              postTaskDetailController.base64Image.value
-                                              ,
-                                              textStyle:KTextStyles().normal(),
-                                            );
-                                          }
-                                        ),
-
-                                      // Stack(
-                                      //   children: [
-                                      //     SizedBox(
-                                      //       width: kWidth(context.isTablet ? .22 : .38),
-                                      //       height: kHeight(context.isTablet ? .16 : .2),
-                                      //       child: Center(
-                                      //         child: Container(
-                                      //           width: kWidth(context.isTablet ? .2 : .36),
-                                      //           height: kHeight(context.isTablet ? .14 : .18),
-                                      //           decoration: BoxDecoration(
-                                      //             color: KColors.kPrimary,
-                                      //             border: Border.all(
-                                      //               color: KColors.kSecondary,
-                                      //               width: 1.0,
-                                      //             ),
-                                      //             borderRadius: BorderRadius.circular(kWidth(.03)),
-                                      //             boxShadow: [
-                                      //               BoxShadow(
-                                      //                 color: KColors.kWhite.withOpacity(.2),
-                                      //                 blurRadius: 8,
-                                      //                 offset: const Offset(1, 2),
-                                      //               ),
-                                      //             ],
-                                      //           ),
-                                      //           child: ClipRRect(
-                                      //             borderRadius: BorderRadius.circular(kWidth(.03)),
-                                      //             child: Image.network(
-                                      //               postTaskDetailController.imageEdit.value.toString(),
-                                      //               errorBuilder: (BuildContext context, Object exception,
-                                      //                   StackTrace? stackTrace) {
-                                      //                 return postTaskDetailController.image.value != null
-                                      //                     ? Image.memory(
-                                      //                   postTaskDetailController.image.value!
-                                      //                       .readAsBytesSync(),
-                                      //                   fit: BoxFit.cover,
-                                      //                 )
-                                      //                     : Icon(
-                                      //                   CupertinoIcons.profile_circled,
-                                      //                   size: kWidth(context.isTablet ? .14 : .24),
-                                      //                   color: KColors.kSecondary,
-                                      //                 );
-                                      //               },
-                                      //               loadingBuilder: (BuildContext context, Widget child,
-                                      //                   ImageChunkEvent? loadingProgress) {
-                                      //                 if (loadingProgress == null) {
-                                      //                   return child;
-                                      //                 }
-                                      //                 return Center(
-                                      //                   child: CircularProgressIndicator(
-                                      //                     color: KColors.kSecondary,
-                                      //                     value: loadingProgress.expectedTotalBytes != null
-                                      //                         ? loadingProgress.cumulativeBytesLoaded /
-                                      //                         loadingProgress.expectedTotalBytes!
-                                      //                         : null,
-                                      //                   ),
-                                      //                 );
-                                      //               },
-                                      //               fit: BoxFit.cover,
-                                      //             ),
-                                      //           ),
-                                      //         ),
-                                      //       ),
-                                      //     ),
-                                      //     if (postTaskDetailController.imageEdit.value != null ||
-                                      //         postTaskDetailController.imageEdit.value != "" &&
-                                      //             postTaskDetailController.image.value != null)
-                                      //       Positioned(
-                                      //         right: 0,
-                                      //         top: 0,
-                                      //         child: GestureDetector(
-                                      //           onTap: () {
-                                      //             postTaskDetailController.imageEdit.value = null;
-                                      //             postTaskDetailController.image.value = null;
-                                      //             postTaskDetailController.update();
-                                      //           },
-                                      //           child: CircleAvatar(
-                                      //             backgroundColor: KColors.kWhite,
-                                      //             radius: kWidth(context.isTablet ? .02 : .034),
-                                      //             child: Icon(
-                                      //               Icons.close_rounded,
-                                      //               color: KColors.kRed,
-                                      //               size: kWidth(context.isTablet ? .03 : .06),
-                                      //             ),
-                                      //           ),
-                                      //         ),
-                                      //       ),
-                                      //   ],
-                                      // ),
-                                    ),
-                                  ),
+                                  // Stack(
+                                  //   children: [
+                                  //     SizedBox(
+                                  //       width: kWidth(context.isTablet ? .22 : .38),
+                                  //       height: kHeight(context.isTablet ? .16 : .2),
+                                  //       child: Center(
+                                  //         child: Container(
+                                  //           width: kWidth(context.isTablet ? .2 : .36),
+                                  //           height: kHeight(context.isTablet ? .14 : .18),
+                                  //           decoration: BoxDecoration(
+                                  //             color: KColors.kPrimary,
+                                  //             border: Border.all(
+                                  //               color: KColors.kSecondary,
+                                  //               width: 1.0,
+                                  //             ),
+                                  //             borderRadius: BorderRadius.circular(kWidth(.03)),
+                                  //             boxShadow: [
+                                  //               BoxShadow(
+                                  //                 color: KColors.kWhite.withOpacity(.2),
+                                  //                 blurRadius: 8,
+                                  //                 offset: const Offset(1, 2),
+                                  //               ),
+                                  //             ],
+                                  //           ),
+                                  //           child: ClipRRect(
+                                  //             borderRadius: BorderRadius.circular(kWidth(.03)),
+                                  //             child: Image.network(
+                                  //               postTaskDetailController.imageEdit.value.toString(),
+                                  //               errorBuilder: (BuildContext context, Object exception,
+                                  //                   StackTrace? stackTrace) {
+                                  //                 return postTaskDetailController.image.value != null
+                                  //                     ? Image.memory(
+                                  //                   postTaskDetailController.image.value!
+                                  //                       .readAsBytesSync(),
+                                  //                   fit: BoxFit.cover,
+                                  //                 )
+                                  //                     : Icon(
+                                  //                   CupertinoIcons.profile_circled,
+                                  //                   size: kWidth(context.isTablet ? .14 : .24),
+                                  //                   color: KColors.kSecondary,
+                                  //                 );
+                                  //               },
+                                  //               loadingBuilder: (BuildContext context, Widget child,
+                                  //                   ImageChunkEvent? loadingProgress) {
+                                  //                 if (loadingProgress == null) {
+                                  //                   return child;
+                                  //                 }
+                                  //                 return Center(
+                                  //                   child: CircularProgressIndicator(
+                                  //                     color: KColors.kSecondary,
+                                  //                     value: loadingProgress.expectedTotalBytes != null
+                                  //                         ? loadingProgress.cumulativeBytesLoaded /
+                                  //                         loadingProgress.expectedTotalBytes!
+                                  //                         : null,
+                                  //                   ),
+                                  //                 );
+                                  //               },
+                                  //               fit: BoxFit.cover,
+                                  //             ),
+                                  //           ),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //     if (postTaskDetailController.imageEdit.value != null ||
+                                  //         postTaskDetailController.imageEdit.value != "" &&
+                                  //             postTaskDetailController.image.value != null)
+                                  //       Positioned(
+                                  //         right: 0,
+                                  //         top: 0,
+                                  //         child: GestureDetector(
+                                  //           onTap: () {
+                                  //             postTaskDetailController.imageEdit.value = null;
+                                  //             postTaskDetailController.image.value = null;
+                                  //             postTaskDetailController.update();
+                                  //           },
+                                  //           child: CircleAvatar(
+                                  //             backgroundColor: KColors.kWhite,
+                                  //             radius: kWidth(context.isTablet ? .02 : .034),
+                                  //             child: Icon(
+                                  //               Icons.close_rounded,
+                                  //               color: KColors.kRed,
+                                  //               size: kWidth(context.isTablet ? .03 : .06),
+                                  //             ),
+                                  //           ),
+                                  //         ),
+                                  //       ),
+                                  //   ],
+                                  // ),
+                                ),
+                              ),
 
                               heightBox(0.1),
                               PrimaryButton(
@@ -469,6 +468,15 @@ class PostTaskDetailScreen extends StatelessWidget {
                                 heightBox(0.01),
                                 Consumer<PostJobViewModel>(
                                     builder: (ctx, provider, child) {
+                                  if (provider.state == JobPostState.loading) {
+                                    return Center(
+                                      child: SizedBox(
+                                        height: 20,
+                                        width: 20,
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    );
+                                  }
                                   return PrimaryButton(
                                       width: 0.9,
                                       textColor: KColors.kWhite,
@@ -481,42 +489,33 @@ class PostTaskDetailScreen extends StatelessWidget {
                                         //     .validate()) {
                                         //   return;
                                         // } else {
-                                          try {
-                                            await provider.postJob(
-                                                title: postTaskDetailController
-                                                    .taskController.text,
-                                                description:
-                                                    postTaskDetailController
-                                                        .descriptionController
-                                                        .text,
-                                                imageUrl: 'N/A',
-                                                videoPath: 'N/A',
-                                                budget: postTaskDetailController
-                                                    .budgetController.text,
-                                                time: postTaskDetailController
-                                                    .datePicked
-                                                    .value
-                                                    .millisecondsSinceEpoch
-                                                    .toString(),
-                                                date: postTaskDetailController
-                                                    .datePicked
-                                                    .value
-                                                    .microsecondsSinceEpoch
-                                                    .toString(),
-                                                location: [],
-                                                status: 'pending',
-                                                address:
-                                                    postTaskDetailController
-                                                        .locationController
-                                                        .text,
-                                                numberOfBids: 0,
-                                                jobType: title,
-                                                name: currentUser!.userName);
-                                            
-                                          } on CustomException catch (error) {
-                                            showErrorDialogue(error.prefix,
-                                                error.message, context);
-                                          }
+                                        try {
+                                          await provider.postJob(
+                                              title: postTaskDetailController
+                                                  .taskController.text,
+                                              description:
+                                                  postTaskDetailController
+                                                      .descriptionController
+                                                      .text,
+                                              imageUrl: 'N/A',
+                                              videoPath: 'N/A',
+                                              budget: postTaskDetailController
+                                                  .budgetController.text,
+                                              time: '5:60 AM',
+                                              date:
+                                                  '${postTaskDetailController.datePicked.value.day}-${postTaskDetailController.datePicked.value.day}-${postTaskDetailController.datePicked.value.day}-${postTaskDetailController.datePicked.value.month}-${postTaskDetailController.datePicked.value.day}-${postTaskDetailController.datePicked.value.year}'
+                                                      .toString(),
+                                              location: [],
+                                              status: 'pending',
+                                              address: postTaskDetailController
+                                                  .locationController.text,
+                                              numberOfBids: 0,
+                                              jobType: title,
+                                              name: currentUser!.userName);
+                                        } on CustomException catch (error) {
+                                          showErrorDialogue(error.prefix,
+                                              error.message, context);
+                                        }
                                         // }
                                       });
                                 }),

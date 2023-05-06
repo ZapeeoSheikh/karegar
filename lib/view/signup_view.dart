@@ -234,6 +234,19 @@ class _SignupState extends State<Signup> {
                   }
                   return GestureDetector(
                     onTap: () async {
+                      if (widget.userType == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddPhone(
+                              name: _controller.text,
+                              email: _controller2.text,
+                              password: _controller3.text,
+                            ),
+                          ),
+                        );
+                        return;
+                      }
                       try {
                         await provider.signUp(
                             email: _controller2.text,
@@ -242,18 +255,8 @@ class _SignupState extends State<Signup> {
                             userType: widget.userType == 0
                                 ? UserType.customer
                                 : UserType.tradePerson);
-                        widget.userType == 0
-                            ? Navigator.pushNamed(context, Routes.bottomNav)
-                            : Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => AddPhone(
-                                    name: _controller.text,
-                                    email: _controller2.text,
-                                    password: _controller3.text,
-                                  ),
-                                ),
-                              );
+
+                        Navigator.pushNamed(context, Routes.bottomNav);
                       } on CustomException catch (error) {
                         showErrorDialogue(error.prefix, error.message, context);
                       }

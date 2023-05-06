@@ -212,8 +212,8 @@ class _AddSkillsState extends State<AddSkills> {
                                       name: widget.name,
                                       email: widget.email,
                                       password: widget.password,
-                                      phone: _controller.text,
-                                      cnic: _controller.text,
+                                      phone: widget.phone,
+                                      cnic: widget.cnic,
                                       skills: selectedSkillList,
                                     )));
                       }

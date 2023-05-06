@@ -9,7 +9,7 @@ import 'chooseRole_view.dart';
 import 'login_view.dart';
 
 class AddCnic extends StatefulWidget {
-  const AddCnic({Key? key, required this.name, required this.email, required this.password, required this.phone,  }) : super(key: key);
+  const AddCnic({Key? key, required this.name, required this.email, required this.password, required this.phone}) : super(key: key);
   final String name;
   final String email;
   final String password;
@@ -93,6 +93,7 @@ class _AddCnicState extends State<AddCnic> {
                     GestureDetector(
                       onTap: (){
                         setState(() {
+                          print(widget.phone);
                           if (_controller
                               .value
                               .text
@@ -100,7 +101,7 @@ class _AddCnicState extends State<AddCnic> {
                           ) {
                             if (_errorText1 ==
                                 null) {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => AddSkills(name: widget.name, email: widget.email, password: widget.password, phone: _controller.text, cnic: _controller.text,)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => AddSkills(name: widget.name, email: widget.email, password: widget.password, phone: widget.phone, cnic: _controller.text,)));
                             } else {
                               error1 = true;
 

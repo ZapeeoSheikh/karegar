@@ -140,11 +140,13 @@ class _LoginState extends State<Login> {
                         Consumer<AuthViewModel>(
                             builder: (ctx, provider, child) {
                           if (provider.authState == AuthState.loading) {
-                            return const SizedBox(
-                              height: 30,
-                              width: 30,
-                              child: CircularProgressIndicator(
-                                color: KColors.kPrimary,
+                            return const Center(
+                              child: const SizedBox(
+                                height: 30,
+                                width: 30,
+                                child: CircularProgressIndicator(
+                                  color: KColors.kPrimary,
+                                ),
                               ),
                             );
                           }
