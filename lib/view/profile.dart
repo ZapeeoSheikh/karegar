@@ -24,20 +24,23 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  height: kHeight(0.40),
+                  height: kHeight(0.45),
+
                   decoration: BoxDecoration(
                     // color: KColors.kSecondary,
                     borderRadius: BorderRadius.circular(
                       kHeight(0.03),
                     ),
-                    color: KColors.kWhite,
+                    border: Border.all(color: KColors.kPrimary),
+                    color: KColors.kPrimary,
                   ),
                   child: Column(children: [
                     Container(
-                      height: kHeight(0.34),
+                      height: kHeight(0.38),
                       width: context.width,
+padding: EdgeInsets.all(kHeight(0.01),),
                       decoration: BoxDecoration(
-                        color: KColors.kPrimary,
+                        color: KColors.kWhite,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(kHeight(0.03)),
                           topLeft: Radius.circular(kHeight(0.03)),
@@ -47,39 +50,62 @@ class ProfileScreen extends StatelessWidget {
                         children: [
                           heightBox(0.03),
                           CircleAvatar(
-                            radius: kHeight(0.05),
+                            radius: kHeight(0.065),
                             backgroundImage: AssetImage(
-                              'assets/images/carpenters.png'
+                              'assets/images/carpenter.png'
                             ),
                           ),
                           heightBox(0.01),
-                          CustomText(
-                            text: "Hanan",
-                            textStyle: KTextStyles().subHeading(
-                              textColor: KColors.kPrimary,
-                            ),
-                          ),
-                          CustomText(
-                            text: "Customer",
-                            textStyle: KTextStyles().subHeading(
-                              textColor: KColors.kPrimary,
-                            ),
-                          ),
-                          heightBox(0.06),
-                          Container(
-                            height: kHeight(0.05),
-                            width: kWidth(0.6),
-                            decoration: BoxDecoration(
-                              color: KColors.kPrimary,
-                              borderRadius: BorderRadius.circular(
-                                kHeight(0.03),
+                          Align(
+                            alignment: Alignment.center,
+                            child: CustomText(
+                              text: "Hanan",
+                              textStyle: KTextStyles().heading(
+                                textColor: KColors.kPrimary,
+                                fontSize: 20,
                               ),
                             ),
-                            child: Center(
-                              child: CustomText(
-                                text: "hanan@gmail.com",
-                                textStyle: KTextStyles().subHeading(
-                                  textColor: KColors.kPrimary,
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: CustomText(
+                              alignText: TextAlign.left,
+                              text: "Customer",
+                              textStyle: KTextStyles().normal(
+                                textColor: KColors.kPrimary,
+                                fontSize: 14
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: CustomText(
+                              alignText: TextAlign.left,
+                              text: "03019329293",
+                              textStyle: KTextStyles().normal(
+                                textColor: KColors.kPrimary,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          heightBox(0.03),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              height: kHeight(0.05),
+                              width: kWidth(0.6),
+                              decoration: BoxDecoration(
+                                color: KColors.kPrimary,
+                                borderRadius: BorderRadius.circular(
+                                  kHeight(0.01),
+                                ),
+                              ),
+                              child: Center(
+                                child: CustomText(
+                                  text: "hanan@gmail.com",
+                                  textStyle: KTextStyles().subHeading(
+                                    textColor: KColors.kWhite,
+                                  ),
                                 ),
                               ),
                             ),
@@ -88,11 +114,11 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      height: kHeight(0.05),
+                      height: kHeight(0.055),
                       width: kWidth(0.85),
                       decoration: BoxDecoration(
                         // shape: BoxShape.circle,
-                        color: KColors.kBlack,
+                        color: KColors.kWhite,
 
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(
@@ -104,8 +130,17 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+
+
                   ]),
                 ),
+
+                heightBox(0.1),
+                PrimaryButton(
+                  // borderColor: ,
+borderRadius: 0.03,
+                    // width: con,
+                    text: 'Log out', function: (){})
               ],
             ),
           ),

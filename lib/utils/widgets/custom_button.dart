@@ -11,6 +11,7 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback function;
   final double width;
   final double height;
+  final double borderRadius;
   final Color color;
   final Color borderColor;
   final Color textColor;
@@ -23,6 +24,7 @@ class PrimaryButton extends StatelessWidget {
     this.color = KColors.kPrimary,
     this.borderColor = KColors.kWhite,
     this.textColor = KColors.kWhite,
+    this.borderRadius=0.03,
     this.width = .5,
     this.height = .054,
     this.padding = EdgeInsets.zero,
@@ -38,7 +40,7 @@ class PrimaryButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.all(
-            Radius.circular(kWidth(.03)),
+            Radius.circular(kWidth(borderRadius)),
 
           ),
           border: Border.all(color: borderColor)

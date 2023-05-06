@@ -48,6 +48,8 @@ dependencies:
   google_fonts: ^4.0.4
   image_picker: ^0.8.7
   datetime_setting: ^2.0.2
+  flutter_exif_rotation: ^0.5.1
+  compress_images_flutter: ^0.0.3+4
 
 dev_dependencies:
   flutter_test:

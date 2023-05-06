@@ -97,6 +97,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
+  compress_images_flutter:
+    dependency: "direct main"
+    description:
+      name: compress_images_flutter
+      sha256: "5c84ff108ab452c8e04a3ba9d10cd09284d9f92a82ece7266b48151509b48cdb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3+5"
   connectivity_plus:
     dependency: "direct main"
     description:
@@ -262,6 +270,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_exif_rotation:
+    dependency: "direct main"
+    description:
+      name: flutter_exif_rotation
+      sha256: "642841fa8dbedb0ac7b7f005dd24a606ce237ab2de0fedef7b3419d58b97f2a7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
   flutter_lints:
     dependency: "direct dev"
     description:
