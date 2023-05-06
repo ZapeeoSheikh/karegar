@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 
 class KColors {
   static const kPrimary = Color(0xff258D60);
-  static const kWhite = Color(0xffe7ffff);
+  static const kSecondary = Color(0xffe7ffff);
+  static const kWhite = Colors.white;
   static const kBlack = Color(0xff000000);
   static const kGrey = Color(0xff838383);
   static const kRed = Color(0xfff00c0c);

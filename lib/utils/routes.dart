@@ -3,6 +3,8 @@ import 'package:softec/view/post_tasks/post_task_screen.dart';
 
 import '../view/bottom_navigation/view/bottom_nav.dart';
 import '../view/home_page.dart';
+import '../view/post_tasks/post_task_detail.dart';
+import '../view/profile.dart';
 import '../view/search_page.dart';
 
 class Routes {
@@ -12,6 +14,8 @@ class Routes {
   static String authPage = 'AuthPageRoute';
   static String bottomNav = 'bottomNav';
   static String postTask = 'postTask';
+  static String postTaskDetail = 'postTaskDetail';
+  static String profile = 'profile';
 
   static Map<String, Widget Function(BuildContext)> generateRoutes() {
     return {
@@ -20,6 +24,8 @@ class Routes {
       searchPage: (context) => const SearchPage(),
       bottomNav: (context) => const BottomNavigation(),
       postTask: (context) => const PostTasksScreen(),
+      postTaskDetail: (context) => PostTaskDetailScreen(title: ''),
+      profile: (context) => ProfileScreen(),
       // authPage: (context) => const (),
     };
   }
