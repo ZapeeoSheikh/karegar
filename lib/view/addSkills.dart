@@ -47,12 +47,7 @@ class _AddSkillsState extends State<AddSkills> {
 
   List<String> selectedSkillList = [];
   List<String> userList = [
-    "Plumber",
-    "Plumber",
-    "Plumber",
-    "Plumber",
-    "Plumber",
-    "Plumber",
+    "Carpenter", "Driver", "Electrician", "Painter", "Plumber", "Web Developer","Mechanices","Ironing","Delivery","Cleaning","Cooking","Planner","Gardener","Photographer","Tailor",
   ];
 
   bool compare(List<String> a, String b) {

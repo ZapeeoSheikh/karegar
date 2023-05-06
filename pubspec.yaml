@@ -47,6 +47,12 @@ dependencies:
   lottie: ^2.3.0
   image_picker: ^0.8.7
   datetime_setting: ^2.0.2
+  get:
+  auto_size_text:
+  lottie:
+  filter_list: ^1.0.2
+  datetime_setting:
+  dropdown_button2: ^2.1.0
 
   google_fonts: ^4.0.4
 
