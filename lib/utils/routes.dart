@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:softec/view/login_view.dart';
 // import 'package:softec/view/auth_page.dart';
 import 'package:softec/view/post_tasks/post_task_screen.dart';
 
@@ -11,10 +12,10 @@ class Routes {
   //Add new route name
   static String homePage = 'homePageRoute';
   static String searchPage = 'SearchPageRoute';
-  // static String authPage = 'AuthPageRoute';
   static String bottomNav = 'bottomNav';
   static String postTask = 'postTask';
   static String postTaskDetail = 'postTaskDetail';
+  static String loginPage = 'loginPage';
 
   static Map<String, Widget Function(BuildContext)> generateRoutes() {
     return {
@@ -23,7 +24,8 @@ class Routes {
       searchPage: (context) => const SearchPage(),
       bottomNav: (context) => const BottomNavigation(),
       postTask: (context) => const PostTasksScreen(),
-      postTaskDetail: (context) => PostTaskDetailScreen(title: ''),
+      postTaskDetail: (context) => const PostTaskDetailScreen(title: ''),
+      loginPage:(context) => const Login(),
       // authPage: (context) => const (),
     };
   }

@@ -25,6 +25,7 @@ class AuthViewModel extends ChangeNotifier {
     String? phoneNumber,
     String? address,
     List<double>? coordinates,
+    List<String>? skills,
   }) async {
     authState = AuthState.loading;
     notifyListeners();
@@ -41,6 +42,7 @@ class AuthViewModel extends ChangeNotifier {
         coordinates: userType == UserType.customer ? [] : coordinates!,
         contactNumber: userType == UserType.customer ? 'N/A' : phoneNumber!,
         userType: userType == UserType.customer ? 'customer' : 'tradePerson',
+        skills: userType == UserType.customer ? ['N/A'] : skills!,
       );
       await usersCollection.doc(credentials.user!.uid).set(newUser.toJson());
       authState = AuthState.logedIn;
@@ -60,10 +62,10 @@ class AuthViewModel extends ChangeNotifier {
     authState = AuthState.loading;
     notifyListeners();
     try {
-      await firebaseAuth.signInWithEmailAndPassword(
+      UserCredential cred = await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       DocumentSnapshot getUser =
-          await usersCollection.doc(firebaseAuth.currentUser!.uid).get();
+          await usersCollection.doc(cred.user!.uid).get();
       currentUser = Users.fromJson(getUser.data() as Map<String, dynamic>);
       currentUserType = currentUser!.userType == 'customer'
           ? UserType.customer
@@ -77,7 +79,7 @@ class AuthViewModel extends ChangeNotifier {
     } catch (error) {
       authState = AuthState.unknown;
       notifyListeners();
-      throw CustomException('Something went wrong', 'Error');
+      throw CustomException(error.toString(), 'Error');
     }
   }
 }

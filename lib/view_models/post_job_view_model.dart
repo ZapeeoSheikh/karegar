@@ -10,7 +10,7 @@ enum JobPostState {
   unknown,
 }
 
-class PostJobViewMode extends ChangeNotifier {
+class PostJobViewModel extends ChangeNotifier {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   JobPostState state = JobPostState.unknown;
   CollectionReference jobsCollection =
@@ -24,7 +24,7 @@ class PostJobViewMode extends ChangeNotifier {
     required String budget,
     required String time,
     required String date,
-    required List<double> location,
+    required List<dynamic> location,
     required String status,
     required String address,
     required int numberOfBids,

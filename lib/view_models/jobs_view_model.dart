@@ -17,6 +17,7 @@ class JobsViewModel extends ChangeNotifier {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   CollectionReference jobsCollection =
       FirebaseFirestore.instance.collection('jobs');
+  
   ShowJobsState state = ShowJobsState.unknown;
 
   //---------------------Jobs----------------------
@@ -29,10 +30,10 @@ class JobsViewModel extends ChangeNotifier {
 
   Future<void> showPostedJobs() async{
     try{
-      jobsCollection.where('JobStatus', isEqualTo: 'active').snapshots().listen((event) { 
-        event.docChanges.forEach((element) {
-            if(!jobsDocsId.contains(element.doc)){
-              jobsDocsId.add(element.doc);
+      jobsCollection.snapshots().listen((event) { 
+        event.docs.forEach((element) {
+            if(!jobsDocsId.contains(element)){
+              jobsDocsId.add(element);
             }
          });
         jobsDocsId.forEach((element) { 

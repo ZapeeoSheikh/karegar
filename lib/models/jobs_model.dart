@@ -6,7 +6,7 @@ class Job{
   final String budget;
   final String time;
   final String date;
-  final List<double> location;
+  final List<dynamic> location;
   final String address;
   final String postedBy;
   final int numberOfBids;

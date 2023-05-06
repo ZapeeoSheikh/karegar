@@ -6,8 +6,9 @@ class Users {
   final String imageUrl;
   final String cnicNumber;
   final String contactNumber;
-  final List<double> coordinates;
+  final List<dynamic> coordinates;
   final String userType;
+  final List<dynamic> skills;
   Users(
       {required this.userName,
       required this.userEmail,
@@ -18,6 +19,7 @@ class Users {
       required this.coordinates,
       required this.contactNumber,
       required this.userType,
+      required this.skills,
       });
 
   Map<String, dynamic> toJson() {
@@ -31,6 +33,7 @@ class Users {
       'coordinates' : coordinates,
       'contactNumber' : contactNumber,
       'userType' : userType,
+      'skills' : skills,
     };
   }
 
@@ -40,10 +43,11 @@ class Users {
           userEmail: json['userEmail'] as String,
           userId: json['userId'] as String,
           userDeviceId: json['userDeviceId'] as String,
-          imageUrl: json['imageUrl'],
-          cnicNumber: json['cnicNumber'],
-          contactNumber: json['contactNumber'],
-          coordinates: json['coordinates'],
-          userType: json['userType'],
+          imageUrl: json['imageUrl'] as String,
+          cnicNumber: json['cnicNumber'] as String,
+          contactNumber: json['contactNumber'] as String,
+          coordinates: json['coordinates'] as List<dynamic>,
+          userType: json['userType'] as String,
+          skills: json['skills'] as List<dynamic>,
         );
 }

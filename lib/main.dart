@@ -11,7 +11,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    // options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
 }
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             providers: providers,
             child: MaterialApp(
               routes: Routes.generateRoutes(),
-              initialRoute: Routes.authPage,
+              initialRoute: Routes.loginPage,
             ),
           );
         });
