@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:softec/view/login_view.dart';
+import 'package:softec/view/signup_view.dart';
 import '../utils/r_colors.dart';
 
 class ChooseIdentity extends StatefulWidget {
-  const ChooseIdentity({Key? key}) : super(key: key);
+  const ChooseIdentity({Key? key,}) : super(key: key);
+
 
   @override
   State<ChooseIdentity> createState() => _ChooseIdentityState();
@@ -47,7 +49,7 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                     onTap: () {
                       user = 0;
                       print(user);
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => Login(userType: 0)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Signup(userType: 0)));
                     },
                     child: Container(
                       height: 90.h,
@@ -104,7 +106,7 @@ class _ChooseIdentityState extends State<ChooseIdentity> {
                     onTap: () {
                       user = 1;
                       print(user);
-                       // Navigator.push(context, MaterialPageRoute(builder: (context) => Login(userType: 1)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Signup(userType: 1)));
                     },
                     child: Container(
                       height: 90.h,

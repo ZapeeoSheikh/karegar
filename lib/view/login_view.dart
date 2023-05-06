@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:softec/view/signup_view.dart';
 
 import '../utils/r_colors.dart';
+import 'chooseRole_view.dart';
 
 
 class Login extends StatefulWidget {
@@ -101,7 +102,7 @@ class _LoginState extends State<Login> {
                     ),
                     TextField(
                       controller: _controller2,
-                      obscureText: showPassword ? true : false,
+                      obscureText: showPassword ? !true : !false,
                       decoration: InputDecoration(
                           errorText: error2 == false
                               ? null
@@ -115,7 +116,7 @@ class _LoginState extends State<Login> {
                                   showPassword = !showPassword;
                                 });
                               },
-                              child: showPassword == true ? Icon(CupertinoIcons.eye_slash_fill) : ImageIcon(AssetImage("assets/icons/eye.png"))
+                              child: showPassword != true ? Icon(CupertinoIcons.eye_slash_fill) : ImageIcon(AssetImage("assets/icons/eye.png"))
                           ),
 
                           hintText: "Enter your password",
@@ -149,7 +150,7 @@ class _LoginState extends State<Login> {
                                 null && _errorText2 ==
                                 null ) {
 
-                              print("object");
+                              print("object login call for home page");
                             } else {
                               error1 = true;
                               error2 = true;
@@ -198,7 +199,7 @@ class _LoginState extends State<Login> {
                         ),
                         GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Signup()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ChooseIdentity()));
                             },
                             child: Text(
                               "Sign up",

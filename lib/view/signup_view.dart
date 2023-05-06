@@ -1,13 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../utils/r_colors.dart';
+import 'addPhone_view.dart';
 import 'chooseRole_view.dart';
 import 'login_view.dart';
 
 class Signup extends StatefulWidget {
-  const Signup({Key? key, }) : super(key: key);
-
+  const Signup({Key? key, required this.userType, }) : super(key: key);
+final int userType;
   @override
   State<Signup> createState() => _SignupState();
 }
@@ -172,14 +174,22 @@ class _SignupState extends State<Signup> {
                   SizedBox(height: 20.h,),
                   TextField(
                     controller: _controller3,
-
+                    obscureText: showPassword ? !true : !false,
                     decoration: InputDecoration(
                         errorText: error3 == false
                             ? null
                             : _errorText3,
-                        prefixIcon: ImageIcon(AssetImage("assets/icons/lock.png")),
+                        prefixIcon:
+                        ImageIcon(AssetImage("assets/icons/lock.png")),
                         suffixIcon:
-                        ImageIcon(AssetImage("assets/icons/eye.png")),
+                        GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                showPassword = !showPassword;
+                              });
+                            },
+                            child: showPassword != true ? Icon(CupertinoIcons.eye_slash_fill) : ImageIcon(AssetImage("assets/icons/eye.png"))
+                        ),
 
                         hintText: "Enter your password",
                         labelText: "Password",
@@ -187,11 +197,11 @@ class _SignupState extends State<Signup> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: MyColor.radioButtonActive,),
+                          borderSide: BorderSide(
+                            color: MyColor.radioButtonActive,
+                          ),
                           borderRadius: BorderRadius.circular(10),
-
-                        )
-                    ),
+                        )),
                   ),
                   SizedBox(height: 50.h,),
                   GestureDetector(
@@ -214,8 +224,13 @@ class _SignupState extends State<Signup> {
                               null && _errorText2 ==
                               null && _errorText3 ==
                               null ) {
-
-                            print("object");
+                            if(widget.userType == 0){
+                              print("home page ");
+                            }
+                            else if(widget.userType == 1){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => AddPhone(name: _controller.text, email: _controller2.text, password: _controller3.text,)));
+                            }
+                          //
                           } else {
                             error1 = true;
                             error2 = true;
@@ -236,31 +251,16 @@ class _SignupState extends State<Signup> {
                               color: MyColor.mainColor1,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Center(child: Text("Sign Up", style: TextStyle(color: Colors.white),)),
+                            child: Center(child: widget.userType == 0 ? Text(
+                              "Sign Up", style: TextStyle(color: Colors.white, fontSize: 16.sp),) : Text(
+                              "Next", style: TextStyle(color: Colors.white, fontSize: 16.sp),)),
                           ),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(height: 40.h,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Already have an account?",
-                        style: GoogleFonts.roboto(fontSize: 16.sp),
-                      ),
-                      SizedBox(width: 10.w,),
-                      GestureDetector(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
-                          },
-                          child: Text(
-                            "Sign In",
-                            style: GoogleFonts.roboto(fontSize: 16.sp, color: MyColor.mainColor1),
-                          )),
-                    ],
-                  ),
+
                 ],
               ),
             ),
