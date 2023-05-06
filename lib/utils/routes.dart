@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:softec/view/auth_page.dart';
 
 import '../view/home_page.dart';
 import '../view/search_page.dart';
@@ -15,7 +14,6 @@ class Routes {
       //Add route here
       homePage: (context) => const HomePage(),
       searchPage: (context) => const SearchPage(),
-      authPage: (context) => const AuthenticationPage(),
     };
   }
 }
