@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:softec/utils/dynamic_sizes.dart';
 import 'package:softec/utils/widgets/custom_app_bar.dart';
 import 'package:softec/view/post_tasks/post_task_controller.dart';
@@ -22,30 +23,32 @@ class PostTasksScreen extends StatelessWidget {
                 centerTitle: false,
                 actions: [],
               ),
-              body: Padding(
-                padding: EdgeInsets.all(
-                  kHeight(0.03),
-                ),
-                child: SingleChildScrollView(
+              body: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.all(
+                    kHeight(0.03),
+                  ),
                   child: Column(
                     children: [
                       CustomText(
                         // alignText: TextAlign.left,
-                        text: 'Post a Job',
+                        text: 'Select job posting skills',
                         textStyle: KTextStyles().subHeading(
                           textColor: KColors.kPrimary,
+                           fontSize: 20.sp
                         ),
                       ),
                       heightBox(0.03),
                       SizedBox(
                         child: GridView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
+                          // clipBehavior: Clip.none,
+                          // physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: kWidth(.5),
+                            maxCrossAxisExtent: kWidth(.3),
                             childAspectRatio: .99,
                             crossAxisSpacing: kWidth(.04),
-                            mainAxisSpacing: kWidth(.04),
+                            mainAxisSpacing: kWidth(.06),
                           ),
                           itemCount: postTaskController.categories.length,
                           itemBuilder: (BuildContext ctx, index) {
@@ -56,7 +59,8 @@ class PostTasksScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => PostTaskDetailScreen(
-                                        title:postTaskController.categories[index]['name'].toString()),
+                                        title:postTaskController.categories[index]['name'].toString(),
+                                    ),
                                   ),
                                 );
                                 // Navigator.pushNamed(context, Routes.postTaskDetail,
@@ -74,7 +78,7 @@ class PostTasksScreen extends StatelessWidget {
                                 // }
                               },
                               child: Container(
-                                // height: kHeight(.),
+                                // height: kHeight(.05),
                                 alignment: Alignment.center,
 
                                 decoration: BoxDecoration(
@@ -82,8 +86,8 @@ class PostTasksScreen extends StatelessWidget {
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey,
-                                      blurRadius: 15.0, // soften the shadow
-                                      spreadRadius: 2.0, //extend the shadow
+                                      blurRadius: 12.0, // soften the shadow
+                                      // spreadRadius: 2.0, //extend the shadow
                                       // offset: Offset(
                                       //   5.0, // Move to right 5  horizontally
                                       //   5.0, // Move to bottom 5 Vertically
@@ -100,7 +104,7 @@ class PostTasksScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     SizedBox(
-                                      height: kHeight(0.1),
+                                      height: kHeight(0.05),
                                       child: Image.asset(postTaskController.categories[index]['images'].toString()),
                                     ),
                                     //     CircleAvatar(
@@ -122,7 +126,7 @@ class PostTasksScreen extends StatelessWidget {
                                           alignText: TextAlign.center,
                                           maxLines: 2,
                                           textStyle: KTextStyles().heading(
-                                            // fontSize: 13,
+                                            fontSize: 13.sp,
                                             textColor: KColors.kPrimary,
                                             fontWeight: FontWeight.w700,
                                           ),

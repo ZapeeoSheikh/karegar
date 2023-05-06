@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:softec/view/post_tasks/post_task_screen.dart';
 
 import '../view/home_page.dart';
+import '../view/myJobs_view.dart';
 
 /// App Constants
 
@@ -13,7 +14,7 @@ var defaultObscureText = false.obs;
 RxInt pageIndex = RxInt(0);
 final pages = [
   HomePage(),
-  const HomePage(),
+  const MyJobs(),
   const PostTasksScreen(),
   const PostTasksScreen(),
   // globalAccessToken == "guest" ? LoginScreen() : AccountScreen(),

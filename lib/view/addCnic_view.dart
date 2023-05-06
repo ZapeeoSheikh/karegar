@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:softec/view/addLocation_view.dart';
 import '../utils/r_colors.dart';
+import 'addSkills.dart';
 import 'chooseRole_view.dart';
 import 'login_view.dart';
 
@@ -99,7 +100,7 @@ class _AddCnicState extends State<AddCnic> {
                           ) {
                             if (_errorText1 ==
                                 null) {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => AddLocation(name: widget.name, email: widget.email, password: widget.password, phone: _controller.text, cnic: _controller.text,)));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => AddSkills(name: widget.name, email: widget.email, password: widget.password, phone: _controller.text, cnic: _controller.text,)));
                             } else {
                               error1 = true;
 
