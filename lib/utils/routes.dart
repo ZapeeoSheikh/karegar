@@ -7,6 +7,7 @@ import '../view/login_view.dart';
 import '../view/post_tasks/post_task_detail.dart';
 import '../view/profile.dart';
 import '../view/search_page.dart';
+import '../view/task_bids.dart';
 
 class Routes {
   //Add new route name
@@ -18,6 +19,7 @@ class Routes {
   static String postTaskDetail = 'postTaskDetail';
   static String profile = 'profile';
   static String loginPage = 'login';
+  static String tasksBid = 'taskBids';
 
   static Map<String, Widget Function(BuildContext)> generateRoutes() {
     return {
@@ -29,6 +31,7 @@ class Routes {
       postTaskDetail: (context) => PostTaskDetailScreen(title: ''),
       profile: (context) => const ProfileScreen(),
       loginPage: (context) => const Login(),
+      tasksBid: (context) => const TasksBids(),
       // authPage: (context) => const (),
     };
   }

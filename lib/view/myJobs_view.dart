@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:softec/view/task_bids.dart';
 import 'package:softec/view_models/jobs_view_model.dart';
 
 import '../models/jobs_model.dart';
 import '../res/global_variables.dart';
+import '../utils/colors.dart';
 import '../utils/r_colors.dart';
 
 class MyJobs extends StatefulWidget {
@@ -45,7 +47,16 @@ class _MyJobsState extends State<MyJobs> {
                       return Text('Something went wrong');
                     }
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("Loading");
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: CircularProgressIndicator(
+                              color: KColors.kPrimary,
+                            ),
+                          ),
+                        ],
+                      );
                     }
                     return ListView(
                       children:
@@ -53,14 +64,21 @@ class _MyJobsState extends State<MyJobs> {
                         Map<String, dynamic> data =
                             document.data()! as Map<String, dynamic>;
                         Job job = Job.fromJson(data);
-                        return JobTile(
-                          image: 'https://googleflutter.com/sample_image.jpg',
-                          name: job.name,
-                          positionTitle: job.title,
-                          date: job.date,
-                          budget: job.budget,
-                          status: job.jobStatus,
-                          no_of_bids: job.numberOfBids.toString(),
+                        return GestureDetector(
+                          onTap: (){
+
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => TasksBids(),));
+
+                          },
+                          child: JobTile(
+                            image: 'https://googleflutter.com/sample_image.jpg',
+                            name: job.name,
+                            positionTitle: job.title,
+                            date: job.date,
+                            budget: job.budget,
+                            status: job.jobStatus,
+                            no_of_bids: job.numberOfBids.toString(),
+                          ),
                         );
                       }).toList(),
                     );
