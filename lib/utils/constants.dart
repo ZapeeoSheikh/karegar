@@ -7,6 +7,7 @@ import 'dart:io';
 import 'package:compress_images_flutter/compress_images_flutter.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 import 'package:get/get.dart';
+import 'package:softec/view/messages_page.dart';
 import 'package:softec/view/post_tasks/post_task_screen.dart';
 
 import '../view/home_page.dart';
@@ -24,7 +25,7 @@ final pages = [
   const HomePage(),
   const MyJobs(),
   const PostTasksScreen(),
-  const PostTasksScreen(),
+  const MessagesPage(),
   // globalAccessToken == "guest" ? LoginScreen() : AccountScreen(),
   const ProfileScreen(),
 
