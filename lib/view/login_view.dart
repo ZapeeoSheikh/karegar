@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:softec/data/app_exceptions.dart';
 import 'package:softec/utils/error_dialogue.dart';
@@ -9,6 +10,7 @@ import 'package:softec/utils/widgets/widgets_imports.dart';
 import 'package:softec/view/signup_view.dart';
 import 'package:softec/view_models/auth_view_model.dart';
 
+import '../utils/dynamic_sizes.dart';
 import '../utils/r_colors.dart';
 import '../utils/routes.dart';
 import 'chooseRole_view.dart';
@@ -67,75 +69,89 @@ class _LoginState extends State<Login> {
                 child: Column(
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 100.h,
+
+                    heightBox(0.05),
+                    LottieBuilder.asset(
+                      "assets/images/Welcome.json",
+                      repeat: true,
+                      width: kWidth(0.6),
+                      height: kHeight(0.17),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+
                         Text(
-                          "Login",
-                          style: GoogleFonts.roboto(fontSize: 36.sp),
+                          "Login to your account",
+                          style: GoogleFonts.roboto(fontSize: 24.sp,fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                     SizedBox(
                       height: 80.h,
                     ),
-                    TextField(
-                      controller: _controller,
-                      decoration: InputDecoration(
-                          errorText: error1 == false ? null : _errorText1,
-                          prefixIcon:
-                              ImageIcon(AssetImage("assets/icons/mail.png")),
-                          hintText: "Enter your email",
-                          labelText: "Email",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: MyColor.radioButtonActive,
+                    SizedBox(
+                      height: kHeight(0.07),
+                      child: TextField(
+                        controller: _controller,
+                        decoration: InputDecoration(
+                            errorText: error1 == false ? null : _errorText1,
+                            prefixIcon:
+                                ImageIcon(AssetImage("assets/icons/mail.png")),
+                            hintText: "Enter your email",
+                            labelText: "Email",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            borderRadius: BorderRadius.circular(10),
-                          )),
+
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: MyColor.radioButtonActive,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            )),
+                      ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    TextField(
-                      controller: _controller2,
-                      obscureText: showPassword ? !true : !false,
-                      decoration: InputDecoration(
-                          errorText: error2 == false ? null : _errorText2,
-                          prefixIcon:
-                              ImageIcon(AssetImage("assets/icons/lock.png")),
-                          suffixIcon: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  showPassword = !showPassword;
-                                });
-                              },
-                              child: showPassword != true
-                                  ? Icon(CupertinoIcons.eye_slash_fill)
-                                  : ImageIcon(
-                                      AssetImage("assets/icons/eye.png"))),
-                          hintText: "Enter your password",
-                          labelText: "Password",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: MyColor.radioButtonActive,
+                    SizedBox(
+                      height: kHeight(0.07),
+                      child: TextField(
+                        controller: _controller2,
+                        obscureText: showPassword ? !true : !false,
+                        decoration: InputDecoration(
+                            errorText: error2 == false ? null : _errorText2,
+                            prefixIcon:
+                                ImageIcon(AssetImage("assets/icons/lock.png")),
+                            suffixIcon: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    showPassword = !showPassword;
+                                  });
+                                },
+                                child: showPassword != true
+                                    ? Icon(CupertinoIcons.eye_slash_fill)
+                                    : ImageIcon(
+                                        AssetImage("assets/icons/eye.png"))),
+                            hintText: "Enter your password",
+                            labelText: "Password",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            borderRadius: BorderRadius.circular(10),
-                          )),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: MyColor.radioButtonActive,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            )),
+                      ),
                     ),
                     SizedBox(
                       height: 70.h,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Consumer<AuthViewModel>(
                             builder: (ctx, provider, child) {
@@ -162,17 +178,18 @@ class _LoginState extends State<Login> {
                                 }
                               },
                               child: Container(
-                                height: 60,
+                                height: kHeight(0.07),
                                 decoration: BoxDecoration(
                                   color: MyColor.mainColor1,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Center(
-                                  child: Text(
-                                    "login",
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 16.sp, color: Colors.white),
-                                  ),
+                                 child: CustomText(
+                                   text: "Login",
+                                   textStyle: KTextStyles().normal(
+                                     textColor: KColors.kWhite
+                                   ),
+                                 ),
                                 ),
                               ),
                             ),
@@ -188,11 +205,9 @@ class _LoginState extends State<Login> {
                       children: [
                         Text(
                           "Don't have an account?",
-                          style: GoogleFonts.roboto(fontSize: 16.sp),
+                          style: GoogleFonts.roboto(fontSize: 18.sp),
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
+
                         GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -203,7 +218,7 @@ class _LoginState extends State<Login> {
                             child: Text(
                               "Sign up",
                               style: GoogleFonts.roboto(
-                                  fontSize: 16.sp, color: MyColor.mainColor1),
+                                  fontSize: 20.sp, color: MyColor.mainColor1,fontWeight: FontWeight.bold),
                             )),
                       ],
                     ),

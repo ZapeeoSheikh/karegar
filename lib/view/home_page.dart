@@ -12,6 +12,7 @@ import 'package:softec/view_models/jobs_view_model.dart';
 import '../models/jobs_model.dart';
 import '../res/global_variables.dart';
 import '../utils/colors.dart';
+import '../utils/dynamic_sizes.dart';
 import '../utils/widgets/widgets_imports.dart';
 
 class HomePage extends StatelessWidget {
@@ -27,33 +28,35 @@ class HomePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding:  EdgeInsets.all(kHeight(0.02),),
             child: currentUser!.userType == 'taskProvider'
-                ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(image: AssetImage("assets/Vector/unavailable.png")),
-                      Text(
-                        "You can not see the job posting",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Text(
-                        "Join as a trade person",
-                        style: TextStyle(
-                          color: MyColor.mainColor1,
-                          fontSize: 16.sp,
+                ? SingleChildScrollView(
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(image: AssetImage("assets/Vector/unavailable.png")),
+                        Text(
+                          "You can not see the job posting",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.bold),
                         ),
-                      ),
-                    ],
-                  )
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Text(
+                          "Join as a trade person",
+                          style: TextStyle(
+                            color: MyColor.mainColor1,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                )
                 : SizedBox(
-                    height: MediaQuery.of(context).size.height,
+                    height: MediaQuery.of(context).size.height-150,
                     width: double.infinity,
                     child: StreamBuilder<QuerySnapshot>(
                         stream: jobsViewModel.jobsCollection
