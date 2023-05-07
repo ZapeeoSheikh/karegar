@@ -504,7 +504,7 @@ class PostTaskDetailScreen extends StatelessWidget {
                                                   .budgetController.text,
                                               time: '5:60 AM',
                                               date:
-                                                  '${postTaskDetailController.datePicked.value.day}--${postTaskDetailController.datePicked.value.month}-${postTaskDetailController.datePicked.value.year}'
+                                                  '${postTaskDetailController.datePicked.value.day}-${postTaskDetailController.datePicked.value.month}-${postTaskDetailController.datePicked.value.year}'
                                                       .toString(),
                                               location: [],
                                               status: 'pending',

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:softec/data/app_exceptions.dart';
 import 'package:softec/res/global_variables.dart';
 import 'package:softec/utils/error_dialogue.dart';
+import 'package:softec/utils/snackbar.dart';
 import 'package:softec/view_models/auth_view_model.dart';
 import '../utils/r_colors.dart';
 import '../utils/routes.dart';
@@ -255,8 +256,9 @@ class _SignupState extends State<Signup> {
                             userType: widget.userType == 0
                                 ? UserType.customer
                                 : UserType.tradePerson);
-
+                        
                         Navigator.pushReplacementNamed(context, Routes.bottomNav);
+                        showSnackBar(context: context, message: 'Verification email sent to your account.');
                       } on CustomException catch (error) {
                         showErrorDialogue(error.prefix, error.message, context);
                       }

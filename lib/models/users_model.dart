@@ -10,6 +10,8 @@ class Users {
   final String userType;
   final List<dynamic> skills;
   final String location;
+  final String ratting;
+  final bool accountVerified;
   Users(
       {required this.userName,
       required this.userEmail,
@@ -22,6 +24,8 @@ class Users {
       required this.userType,
       required this.skills,
       required this.location,
+      required this.ratting,
+      required this.accountVerified,
       });
 
   Map<String, dynamic> toJson() {
@@ -36,7 +40,9 @@ class Users {
       'contactNumber' : contactNumber,
       'userType' : userType,
       'skills' : skills,
-      'location' : location
+      'location' : location,
+      'accountVerified' : accountVerified,
+      'ratting' : ratting,
     };
   }
 
@@ -53,5 +59,7 @@ class Users {
           userType: json['userType'] as String,
           skills: json['skills'] as List<dynamic>,
           location: json['location'],
+          accountVerified: json['accountVerified'],
+          ratting: json['ratting'],
         );
 }

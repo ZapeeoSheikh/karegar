@@ -1,5 +1,11 @@
+import 'package:provider/provider.dart';
+import 'package:softec/data/app_exceptions.dart';
+import 'package:softec/utils/error_dialogue.dart';
+import 'package:softec/utils/snackbar.dart';
 import 'package:softec/utils/widgets/custom_app_bar.dart';
+import 'package:softec/view_models/make_offer_view_model.dart';
 
+import '../res/global_variables.dart';
 import '../utils/dynamic_sizes.dart';
 import '../utils/widgets/widgets_imports.dart';
 
@@ -46,9 +52,7 @@ class BiddingScreen extends StatelessWidget {
               ),
               heightBox(0.02),
               BidData(
-                  icon: CupertinoIcons.person,
-                  name: name,
-                  title: "Posted by"),
+                  icon: CupertinoIcons.person, name: name, title: "Posted by"),
               BidData(
                   icon: CupertinoIcons.map, name: "Lahore", title: "Location"),
               BidData(
@@ -73,11 +77,39 @@ class BiddingScreen extends StatelessWidget {
                         .subHeading(fontSize: 17, textColor: KColors.kGrey3)),
               ),
               heightBox(0.01),
-              PrimaryButton(
-                width: context.width,
-                text: "Make offer",
-                function: () {},
-              )
+              Consumer<MakeOfferViewModel>(builder: (ctx, provider, child) {
+                if (provider.state == MakeOfferState.loading) {
+                  return const Center(
+                    child: SizedBox(
+                      height: 30,
+                      width: 30,
+                      child: CircularProgressIndicator(
+                        color: KColors.kPrimary,
+                      ),
+                    ),
+                  );
+                }
+                return PrimaryButton(
+                  width: context.width,
+                  text: "Make offer",
+                  function: () async {
+                    try {
+                      await provider.makeOffer(
+                          jobId: taskId,
+                          bidderName: name,
+                          bidBy: currentUser!.userId,
+                          amount: budget,
+                          bidderRating: currentUser!.ratting);
+                      showSnackBar(
+                          context: context,
+                          message: 'Bid was sended to the user');
+                      Navigator.of(context).pop();
+                    } on CustomException catch (error) {
+                      showErrorDialogue(error.prefix, error.message, context);
+                    }
+                  },
+                );
+              }),
             ],
           ),
         ),

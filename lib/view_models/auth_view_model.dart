@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:softec/data/app_exceptions.dart';
 import 'package:softec/res/global_variables.dart';
+import 'package:softec/utils/error_dialogue.dart';
 
 import '../models/users_model.dart';
 
@@ -44,9 +47,16 @@ class AuthViewModel extends ChangeNotifier {
         userType: userType == UserType.customer ? 'customer' : 'tradePerson',
         skills: userType == UserType.customer ? ['N/A'] : skills ?? [],
         location: '',
+        accountVerified: false,
+        ratting: 'N/A',
       );
       await usersCollection.doc(credentials.user!.uid).set(newUser.toJson());
       currentUser = newUser;
+      firebaseAuth.currentUser!.sendEmailVerification();
+      Future.delayed(Duration(seconds: 30)).whenComplete(() async {
+        await usersCollection.doc(credentials.user!.uid).update(
+            {'accountVerified': firebaseAuth.currentUser!.emailVerified});
+      });
       authState = AuthState.logedIn;
       notifyListeners();
     } on FirebaseAuthException catch (error) {

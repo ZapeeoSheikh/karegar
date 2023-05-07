@@ -53,6 +53,7 @@ class PostJobViewModel extends ChangeNotifier {
           );
       DocumentReference jobId = await jobsCollection.add(newJob.toJson());
       newJob.jobId = jobId.id;
+      jobsCollection.doc(newJob.jobId).update({'jobId' : newJob.jobId});
       state = JobPostState.uploaded;
       notifyListeners();
     } on FirebaseException catch (error) {

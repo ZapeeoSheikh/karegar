@@ -8,6 +8,7 @@ import 'package:softec/models/users_model.dart';
 import 'package:softec/utils/r_colors.dart';
 
 import 'package:softec/utils/widgets/custom_app_bar.dart';
+import 'package:softec/view/biddingScreen.dart';
 import 'package:softec/view_models/jobs_view_model.dart';
 import '../models/jobs_model.dart';
 import '../res/global_variables.dart';
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: currentUser!.userType == 'customer'
+          child: currentUser!.userType == 'taskProvider'
               ? Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -67,9 +68,7 @@ class HomePage extends StatelessWidget {
                             ConnectionState.waiting) {
                           return Text("Loading");
                         }
-                        if(snapshot.hasData && snapshot.data!.size == 0){
-
-                        }
+                        if (snapshot.hasData && snapshot.data!.size == 0) {}
 
                         return ListView(
                           children: snapshot.data!.docs
@@ -84,6 +83,9 @@ class HomePage extends StatelessWidget {
                                 date: job.date,
                                 totalBids: job.numberOfBids.toString(),
                                 budget: job.budget,
+                                description: job.description,
+                                taskId: job.jobId,
+                                context: context,
                                 title: job.title);
                           }).toList(),
                         );
@@ -99,6 +101,9 @@ class HomePage extends StatelessWidget {
       required String date,
       required String totalBids,
       required String budget,
+      required BuildContext context,
+      required String description,
+      required String taskId,
       required String title}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
@@ -195,7 +200,18 @@ class HomePage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: MyColor.mainColor1,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BiddingScreen(
+                                    title: title,
+                                    name: name,
+                                    location: location,
+                                    description: description,
+                                    taskId: taskId,
+                                    budget: budget)));
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
