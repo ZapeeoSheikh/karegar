@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:softec/res/global_variables.dart';
 import 'package:softec/utils/widgets/custom_app_bar.dart';
+import 'package:softec/view/login_view.dart';
 import 'package:softec/view/profileController.dart';
 
 import '../utils/dynamic_sizes.dart';
@@ -382,7 +384,7 @@ borderRadius: 0.03,
                               Align(
                                 alignment: Alignment.center,
                                 child: CustomText(
-                                  text: "Hanan",
+                                  text: currentUser!.userName,
                                   textStyle: KTextStyles().heading(
                                     textColor: KColors.kPrimary,
                                     fontSize: 20,
@@ -393,7 +395,7 @@ borderRadius: 0.03,
                                 alignment: Alignment.center,
                                 child: CustomText(
                                   alignText: TextAlign.left,
-                                  text: "Customer",
+                                  text: currentUser!.userType,
                                   textStyle: KTextStyles().normal(
                                       textColor: KColors.kPrimary,
                                       fontSize: 14
@@ -404,7 +406,7 @@ borderRadius: 0.03,
                                 alignment: Alignment.center,
                                 child: CustomText(
                                   alignText: TextAlign.left,
-                                  text: "03019329293",
+                                  text: currentUser!.contactNumber,
                                   textStyle: KTextStyles().normal(
                                     textColor: KColors.kPrimary,
                                     fontSize: 14,
@@ -425,7 +427,7 @@ borderRadius: 0.03,
                                   ),
                                   child: Center(
                                     child: CustomText(
-                                      text: "hanan@gmail.com",
+                                      text: currentUser!.userEmail,
                                       textStyle: KTextStyles().subHeading(
                                         textColor: KColors.kWhite,
                                       ),
@@ -463,7 +465,13 @@ borderRadius: 0.03,
                       // borderColor: ,
                         borderRadius: 0.03,
                         // width: con,
-                        text: 'Log out', function: (){})
+                        text: 'Log out', function: (){
+
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>
+
+                            Login(),));
+                          // FirebaseAuth.instance.currentUser.
+                    })
                   ],
                 ),
               ),

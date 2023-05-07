@@ -11,6 +11,7 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback function;
   final double width;
   final double height;
+  final double fontSize;
   final double borderRadius;
   final Color color;
   final Color borderColor;
@@ -26,7 +27,9 @@ class PrimaryButton extends StatelessWidget {
     this.textColor = KColors.kWhite,
     this.borderRadius=0.03,
     this.width = .5,
+    this.fontSize=14,
     this.height = .054,
+
     this.padding = EdgeInsets.zero,
   }) : super(key: key);
 
@@ -49,7 +52,7 @@ class PrimaryButton extends StatelessWidget {
         child: Center(
           child: CustomText(
             text: text,
-            textStyle: KTextStyles().buttonStyle(textColor: textColor),
+            textStyle: KTextStyles().buttonStyle(textColor: textColor,fontSize: fontSize),
           ),
         ),
       ),

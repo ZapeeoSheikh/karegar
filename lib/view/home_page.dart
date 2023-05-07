@@ -66,7 +66,16 @@ class HomePage extends StatelessWidget {
                         }
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return Text("Loading");
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: CircularProgressIndicator(
+                                  color: KColors.kPrimary,
+                                ),
+                              ),
+                            ],
+                          );
                         }
                         if (snapshot.hasData && snapshot.data!.size == 0) {}
 
@@ -135,7 +144,7 @@ class HomePage extends StatelessWidget {
                   ),
                   Text(
                     name,
-                    style: TextStyle(fontSize: 14.sp, color: Colors.black54),
+                    style: TextStyle(fontSize: 18.sp, color: Colors.black54),
                   )
                 ],
               ),
@@ -148,7 +157,7 @@ class HomePage extends StatelessWidget {
                   Text(
                     title,
                     style: GoogleFonts.roboto(
-                        fontSize: 18.sp,
+                        fontSize: 20.sp,
                         letterSpacing: 0.6,
                         color: Colors.black,
                         fontWeight: FontWeight.bold),
