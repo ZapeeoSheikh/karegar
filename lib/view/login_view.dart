@@ -97,18 +97,26 @@ class _LoginState extends State<Login> {
                         decoration: InputDecoration(
                             errorText: error1 == false ? null : _errorText1,
                             prefixIcon:
-                                ImageIcon(AssetImage("assets/icons/mail.png")),
+                                ImageIcon(AssetImage("assets/icons/mail.png",),color: KColors.kPrimary),
                             hintText: "Enter your email",
+                            hintStyle: TextStyle(
+                              color: KColors.kPrimary
+                            ), labelStyle: TextStyle(
+                              color: KColors.kPrimary
+                            ),
                             labelText: "Email",
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(kHeight(0.02)),
+                              borderSide: BorderSide(
+                                color: KColors.kPrimary,
+                              ),
                             ),
 
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: MyColor.radioButtonActive,
+                                color: KColors.kPrimary,
                               ),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(kHeight(0.02)),
                             )),
                       ),
                     ),
@@ -123,7 +131,7 @@ class _LoginState extends State<Login> {
                         decoration: InputDecoration(
                             errorText: error2 == false ? null : _errorText2,
                             prefixIcon:
-                                ImageIcon(AssetImage("assets/icons/lock.png")),
+                                ImageIcon(AssetImage("assets/icons/lock.png"),color: KColors.kPrimary),
                             suffixIcon: GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -131,19 +139,28 @@ class _LoginState extends State<Login> {
                                   });
                                 },
                                 child: showPassword != true
-                                    ? Icon(CupertinoIcons.eye_slash_fill)
+                                    ? Icon(CupertinoIcons.eye_slash_fill,color: KColors.kPrimary,)
                                     : ImageIcon(
-                                        AssetImage("assets/icons/eye.png"))),
+                                        AssetImage("assets/icons/eye.png"),color: KColors.kPrimary,)),
                             hintText: "Enter your password",
                             labelText: "Password",
+                            // hintText: "Enter your email",
+                            hintStyle: TextStyle(
+                                color: KColors.kPrimary
+                            ), labelStyle: TextStyle(
+                            color: KColors.kPrimary
+                        ),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(kHeight(0.02)),
+                              borderSide: BorderSide(
+                                color: KColors.kPrimary,
+                              ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: MyColor.radioButtonActive,
+                                color: KColors.kPrimary,
                               ),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(kHeight(0.02)),
                             )),
                       ),
                     ),
