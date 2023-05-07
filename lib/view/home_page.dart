@@ -12,6 +12,7 @@ import 'package:softec/view_models/jobs_view_model.dart';
 import '../models/jobs_model.dart';
 import '../res/global_variables.dart';
 import '../utils/colors.dart';
+import '../utils/dynamic_sizes.dart';
 import '../utils/widgets/widgets_imports.dart';
 
 class HomePage extends StatelessWidget {
