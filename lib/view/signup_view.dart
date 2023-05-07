@@ -256,7 +256,7 @@ class _SignupState extends State<Signup> {
                                 ? UserType.customer
                                 : UserType.tradePerson);
 
-                        Navigator.pushNamed(context, Routes.bottomNav);
+                        Navigator.pushReplacementNamed(context, Routes.bottomNav);
                       } on CustomException catch (error) {
                         showErrorDialogue(error.prefix, error.message, context);
                       }

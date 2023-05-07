@@ -136,12 +136,13 @@ class _LoginState extends State<Login> {
                       height: 70.h,
                     ),
                     Row(
+                      
                       children: [
                         Consumer<AuthViewModel>(
                             builder: (ctx, provider, child) {
                           if (provider.authState == AuthState.loading) {
                             return const Center(
-                              child: const SizedBox(
+                              child: SizedBox(
                                 height: 30,
                                 width: 30,
                                 child: CircularProgressIndicator(
@@ -157,7 +158,7 @@ class _LoginState extends State<Login> {
                                   await provider.login(
                                       email: _controller.text,
                                       password: _controller2.text);
-                                  Navigator.pushNamed(context, Routes.bottomNav);
+                                  Navigator.pushReplacementNamed(context, Routes.bottomNav);
                                 } on CustomException catch (error) {
                                   showErrorDialogue(
                                       error.prefix, error.message, context);

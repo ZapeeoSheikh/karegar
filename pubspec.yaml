@@ -54,7 +54,6 @@ dependencies:
 
   flutter_exif_rotation: ^0.5.1
   compress_images_flutter: ^0.0.3+4
-  filter_list: ^1.0.2
 
 dev_dependencies:
   flutter_test:

@@ -150,12 +150,13 @@ class _AddLocationState extends State<AddLocation> {
                           email: widget.email,
                           password: widget.password,
                           userName: widget.name,
-                          userType: UserType.tradePerson);
-                      Navigator.pushNamed(context, Routes.loginPage);
+                          userType: UserType.tradePerson,
+                          skills: widget.skills as List<String>,
+                          );
+                      Navigator.pushReplacementNamed(context, Routes.bottomNav);
                       }on CustomException catch(error){
                         showErrorDialogue(error.prefix, error.message, context);
                       }
-                      
                       //
                     },
                     child: Row(

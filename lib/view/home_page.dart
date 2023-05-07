@@ -25,68 +25,69 @@ class HomePage extends StatelessWidget {
         backgroundColor: MyColor.mainColor1,
         title: Text("Jobs Bidding"),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: currentUser!.userType == 'taskProvider'
-                ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(image: AssetImage("assets/Vector/unavailable.png")),
-                      Text(
-                        "You can not see the job posting",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold),
+      body: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: currentUser!.userType == 'customer'
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image(image: AssetImage("assets/Vector/unavailable.png")),
+                    Text(
+                      "You can not see the job posting",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    Text(
+                      "Join as a trade person",
+                      style: TextStyle(
+                        color: MyColor.mainColor1,
+                        fontSize: 16.sp,
                       ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Text(
-                        "Join as a trade person",
-                        style: TextStyle(
-                          color: MyColor.mainColor1,
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                    ],
-                  )
-                : SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    width: double.infinity,
-                    child: StreamBuilder<QuerySnapshot>(
-                        stream: jobsViewModel.jobsCollection
-                            .where('jobStatus', isEqualTo: 'active')
-                            .snapshots(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return Text('Something went wrong');
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Text("Loading");
-                          }
+                    ),
+                  ],
+                )
+              : SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: double.infinity,
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: jobsViewModel.jobsCollection
+                          .where('jobStatus', isEqualTo: 'active')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('Something went wrong');
+                        }
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Text("Loading");
+                        }
+                        if(snapshot.hasData && snapshot.data!.size == 0){
 
-                          return ListView(
-                            children: snapshot.data!.docs
-                                .map((DocumentSnapshot document) {
-                              Map<String, dynamic> data =
-                                  document.data()! as Map<String, dynamic>;
-                              Job job = Job.fromJson(data);
-                              return jobTile(
-                                  name: job.name,
-                                  imageUrl: job.imageUrl,
-                                  location: job.address,
-                                  date: job.date,
-                                  totalBids: job.numberOfBids.toString(),
-                                  budget: job.budget,
-                                  title: job.title);
-                            }).toList(),
-                          );
-                        }),
-                  )),
-      ),
+                        }
+
+                        return ListView(
+                          children: snapshot.data!.docs
+                              .map((DocumentSnapshot document) {
+                            Map<String, dynamic> data =
+                                document.data()! as Map<String, dynamic>;
+                            Job job = Job.fromJson(data);
+                            return jobTile(
+                                name: job.name,
+                                imageUrl: job.imageUrl,
+                                location: job.address,
+                                date: job.date,
+                                totalBids: job.numberOfBids.toString(),
+                                budget: job.budget,
+                                title: job.title);
+                          }).toList(),
+                        );
+                      }),
+                )),
     );
   }
 

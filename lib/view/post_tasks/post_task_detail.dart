@@ -4,6 +4,7 @@ import 'package:softec/data/app_exceptions.dart';
 import 'package:softec/res/global_variables.dart';
 import 'package:softec/utils/dynamic_sizes.dart';
 import 'package:softec/utils/error_dialogue.dart';
+import 'package:softec/utils/snackbar.dart';
 import 'package:softec/utils/widgets/custom_app_bar.dart';
 import 'package:softec/view/post_tasks/post_task_detail_controller.dart';
 import 'package:softec/view_models/post_job_view_model.dart';
@@ -503,7 +504,7 @@ class PostTaskDetailScreen extends StatelessWidget {
                                                   .budgetController.text,
                                               time: '5:60 AM',
                                               date:
-                                                  '${postTaskDetailController.datePicked.value.day}-${postTaskDetailController.datePicked.value.day}-${postTaskDetailController.datePicked.value.day}-${postTaskDetailController.datePicked.value.month}-${postTaskDetailController.datePicked.value.day}-${postTaskDetailController.datePicked.value.year}'
+                                                  '${postTaskDetailController.datePicked.value.day}--${postTaskDetailController.datePicked.value.month}-${postTaskDetailController.datePicked.value.year}'
                                                       .toString(),
                                               location: [],
                                               status: 'pending',
@@ -512,6 +513,8 @@ class PostTaskDetailScreen extends StatelessWidget {
                                               numberOfBids: 0,
                                               jobType: title,
                                               name: currentUser!.userName);
+                                            showSnackBar(context: context, message: 'Job Posted successfully');
+                                            Navigator.pop(context);
                                         } on CustomException catch (error) {
                                           showErrorDialogue(error.prefix,
                                               error.message, context);
