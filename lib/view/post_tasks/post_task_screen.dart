@@ -43,9 +43,9 @@ class PostTasksScreen extends StatelessWidget {
                         ),
                         heightBox(0.03),
                         SizedBox(
-                          height: kHeight(0.74),
+                          height: kHeight(0.75),
                           child: GridView.builder(
-                            // clipBehavior: Clip.none,
+                            clipBehavior: Clip.none,
                             // physics: const NeverScrollableScrollPhysics(),
                             // shrinkWrap: true,
                             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(

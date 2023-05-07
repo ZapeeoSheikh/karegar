@@ -2,12 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:softec/data/app_exceptions.dart';
 import 'package:softec/res/global_variables.dart';
 import 'package:softec/utils/error_dialogue.dart';
 import 'package:softec/utils/snackbar.dart';
 import 'package:softec/view_models/auth_view_model.dart';
+import '../utils/colors.dart';
+import '../utils/dynamic_sizes.dart';
 import '../utils/r_colors.dart';
 import '../utils/routes.dart';
 import 'addPhone_view.dart';
@@ -133,39 +136,46 @@ class _SignupState extends State<Signup> {
                 SizedBox(
                   height: 80.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Sign up",
-                      style: GoogleFonts.roboto(fontSize: 36.sp),
-                    ),
-                  ],
+                LottieBuilder.asset(
+                  "assets/images/Welcome.json",
+                  repeat: true,
+                  width: kWidth(0.6),
+                  height: kHeight(0.17),
                 ),
+               
                 SizedBox(
-                  height: 80.h,
-                ),
-                TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(
-                    prefixIcon: ImageIcon(
-                      AssetImage(
-                        "assets/icons/user.png",
+                  height: kHeight(0.07),
+                  child: TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      prefixIcon: ImageIcon(
+                        AssetImage(
+                          "assets/icons/user.png",
+                        ),
+                        color: KColors.kPrimary,
+                        size: 25,
                       ),
-                      size: 25,
+                      hintText: "Enter your name",
+                      labelText: "Name",
+                      hintStyle: TextStyle(
+                          color: KColors.kPrimary
+                      ), labelStyle: TextStyle(
+                        color: KColors.kPrimary
                     ),
-                    hintText: "Enter your name",
-                    labelText: "Name",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: MyColor.radioButtonActive,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(kHeight(0.02)),
+                        borderSide: BorderSide(
+                          color: KColors.kPrimary,
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(10),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(kHeight(0.02)),
+                          borderSide: BorderSide(
+                            color: KColors.kPrimary,
+                          ),
+                      ),
+                      errorText: error1 == false ? null : _errorText1,
                     ),
-                    errorText: error1 == false ? null : _errorText1,
                   ),
                 ),
                 SizedBox(
@@ -176,18 +186,27 @@ class _SignupState extends State<Signup> {
                   decoration: InputDecoration(
                       errorText: error2 == false ? null : _errorText2,
                       prefixIcon:
-                          ImageIcon(AssetImage("assets/icons/mail.png")),
+                          ImageIcon(AssetImage("assets/icons/mail.png"),color: KColors.kPrimary),
                       hintText: "Enter your email",
                       labelText: "Email",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                    hintStyle: TextStyle(
+                        color: KColors.kPrimary
+                    ), labelStyle: TextStyle(
+                      color: KColors.kPrimary
+                  ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(kHeight(0.02)),
+                      borderSide: BorderSide(
+                        color: KColors.kPrimary,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: MyColor.radioButtonActive,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      )),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(kHeight(0.02)),
+                      borderSide: BorderSide(
+                        color: KColors.kPrimary,
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 20.h,
@@ -198,7 +217,7 @@ class _SignupState extends State<Signup> {
                   decoration: InputDecoration(
                       errorText: error3 == false ? null : _errorText3,
                       prefixIcon:
-                          ImageIcon(AssetImage("assets/icons/lock.png")),
+                          ImageIcon(AssetImage("assets/icons/lock.png"),color: KColors.kPrimary,),
                       suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -206,19 +225,28 @@ class _SignupState extends State<Signup> {
                             });
                           },
                           child: showPassword != true
-                              ? Icon(CupertinoIcons.eye_slash_fill)
-                              : ImageIcon(AssetImage("assets/icons/eye.png"))),
+                              ? Icon(CupertinoIcons.eye_slash_fill,color: KColors.kPrimary,)
+                              : ImageIcon(AssetImage("assets/icons/eye.png"),color: KColors.kPrimary,)),
                       hintText: "Enter your password",
                       labelText: "Password",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                    hintStyle: TextStyle(
+                        color: KColors.kPrimary
+                    ), labelStyle: TextStyle(
+                      color: KColors.kPrimary
+                  ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(kHeight(0.02)),
+                      borderSide: BorderSide(
+                        color: KColors.kPrimary,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: MyColor.radioButtonActive,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      )),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(kHeight(0.02)),
+                      borderSide: BorderSide(
+                        color: KColors.kPrimary,
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 50.h,
