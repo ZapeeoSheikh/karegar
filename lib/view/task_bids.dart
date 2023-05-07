@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:softec/utils/widgets/custom_app_bar.dart';
@@ -12,6 +9,9 @@ import '../utils/widgets/widgets_imports.dart';
 class TasksBids extends StatelessWidget {
   const TasksBids({Key? key}) : super(key: key);
 
+  // final String jobid;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +20,14 @@ class TasksBids extends StatelessWidget {
         actions: [],
         backgroundColor: KColors.kPrimary,
       ),
+      body: bidEntry(name: 'Hannan Khalid', jobTitle: 'Graphic Designer', ratting: '4.5', budget: '1000')
+    );
 
-      body: Padding(
-        padding:  EdgeInsets.all(kHeight(0.03)),
+    
+  }
+  Widget bidEntry({required String name, required String jobTitle, required String ratting, required String budget}){
+    return Padding(
+        padding: EdgeInsets.all(kHeight(0.01)),
         child: Column(
           children: [
             Card(
@@ -44,8 +49,7 @@ class TasksBids extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 image: NetworkImage(
-                                  'https://googleflutter.com/sample_image.jpg'
-                                ),
+                                    'https://googleflutter.com/sample_image.jpg'),
                                 fit: BoxFit.fill),
                           ),
                         ),
@@ -55,7 +59,11 @@ class TasksBids extends StatelessWidget {
                         Text(
                           "hanan",
                           // "Muhammad Rameez",
-                          style: TextStyle(fontSize: 14.sp, color: Colors.black54),
+                          style: TextStyle(
+                            fontSize: 24.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         )
                       ],
                     ),
@@ -91,7 +99,8 @@ class TasksBids extends StatelessWidget {
                                   fontSize: 14.sp,
                                   letterSpacing: 0.6,
                                   color: MyColor.inActive),
-                            ),Text(
+                            ),
+                            Text(
                               '3',
                               // "23-12-2023",
                               style: GoogleFonts.roboto(
@@ -135,36 +144,14 @@ class TasksBids extends StatelessWidget {
                             width: 0.2,
                             fontSize: 12,
                             color: KColors.kYellow,
-                            text: "Message", function: (){}),
+                            text: "Message",
+                            function: () {}),
                         PrimaryButton(
                             width: 0.2,
-
                             fontSize: 12,
-                            text: "Accept", function: (){}),
+                            text: "Accept",
+                            function: () {}),
 
-
-                        // IconTextButton(
-                        //
-                        //     text: 'Accept', icon: Icons.approval_outlined, function: (){})
-
-                        // Container(
-                        //   // color: MyColor.mainColor1,
-                        //   decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(10.sp),
-                        //       border: Border.all(color: MyColor.mainColor1)),
-                        //   child: Padding(
-                        //     padding: const EdgeInsets.all(6.0),
-                        //     child: Text(
-                        //       " pending ",
-                        //       style: GoogleFonts.roboto(
-                        //         fontSize: 14.sp,
-                        //         letterSpacing: 0.6,
-                        //         // fontWeight: FontWeight.bold,
-                        //         color: MyColor.mainColor1,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // )
                       ],
                     )
                   ],
@@ -173,7 +160,6 @@ class TasksBids extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

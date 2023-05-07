@@ -255,9 +255,11 @@ class _SignupState extends State<Signup> {
                   if (provider.authState == AuthState.loading) {
                     return Center(
                       child: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(),
+                        height: 30,
+                        width: 30,
+                        child: CircularProgressIndicator(
+                          color: KColors.kPrimary,
+                        ),
                       ),
                     );
                   }

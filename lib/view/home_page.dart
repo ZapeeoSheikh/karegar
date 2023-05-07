@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: currentUser!.userType == 'taskProvider'
+          child: currentUser!.userType == 'customer'
               ? Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

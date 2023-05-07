@@ -50,4 +50,7 @@ class MakeOfferViewModel extends ChangeNotifier {
       throw CustomException(error.toString(), 'Couldn\'t get bidders info');
     }
   }
+
+  
+
 }

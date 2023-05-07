@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:softec/utils/constants.dart';
+import 'package:softec/utils/widgets/widgets_imports.dart';
 import 'package:softec/view/task_bids.dart';
 import 'package:softec/view_models/jobs_view_model.dart';
 
@@ -45,6 +47,19 @@ class _MyJobsState extends State<MyJobs> {
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasError) {
                       return Text('Something went wrong');
+                    }
+                    if(snapshot.hasData && snapshot.data.docs.length == 0){
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('No jobs Available'),
+                          Padding(padding: EdgeInsets.all(10),child: PrimaryButton(
+                            text: 'Create a job',
+                            function: (){
+                              pageIndex.value = 2;
+                          }),)
+                        ],
+                      );
                     }
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Column(

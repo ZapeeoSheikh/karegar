@@ -41,9 +41,9 @@ class AuthViewModel extends ChangeNotifier {
         userId: credentials.user!.uid,
         imageUrl: 'N/A',
         userDeviceId: 'N/A',
-        cnicNumber: userType == UserType.customer ? 'N/A' : cnic!,
-        coordinates: userType == UserType.customer ? [] : coordinates!,
-        contactNumber: userType == UserType.customer ? 'N/A' : phoneNumber!,
+        cnicNumber: userType == UserType.customer ? 'N/A' : cnic?? '',
+        coordinates: userType == UserType.customer ? [] : coordinates ?? [],
+        contactNumber: userType == UserType.customer ? 'N/A' : phoneNumber ?? '',
         userType: userType == UserType.customer ? 'customer' : 'tradePerson',
         skills: userType == UserType.customer ? ['N/A'] : skills ?? [],
         location: '',
@@ -66,7 +66,7 @@ class AuthViewModel extends ChangeNotifier {
     } catch (error) {
       authState = AuthState.unknown;
       notifyListeners();
-      throw CustomException('Something went wrong', 'Error');
+      throw CustomException(error.toString(), 'Error');
     }
   }
 

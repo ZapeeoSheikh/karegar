@@ -151,6 +151,8 @@ class _AddLocationState extends State<AddLocation> {
                           password: widget.password,
                           userName: widget.name,
                           userType: UserType.tradePerson,
+                          phoneNumber: widget.phone,
+                          
                           skills: widget.skills as List<String>,
                           );
                       Navigator.pushReplacementNamed(context, Routes.bottomNav);

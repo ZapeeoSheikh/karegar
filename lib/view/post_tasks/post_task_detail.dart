@@ -1,44 +1,57 @@
+import 'dart:io';
+
 import 'package:datetime_setting/datetime_setting.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:softec/data/app_exceptions.dart';
-import 'package:softec/res/global_variables.dart';
 import 'package:softec/utils/dynamic_sizes.dart';
-import 'package:softec/utils/error_dialogue.dart';
-import 'package:softec/utils/snackbar.dart';
 import 'package:softec/utils/widgets/custom_app_bar.dart';
 import 'package:softec/view/post_tasks/post_task_detail_controller.dart';
-import 'package:softec/view_models/post_job_view_model.dart';
 
+import '../../data/app_exceptions.dart';
+import '../../res/global_variables.dart';
+import '../../utils/error_dialogue.dart';
+import '../../utils/snackbar.dart';
 import '../../utils/widgets/widgets_imports.dart';
+import '../../view_models/post_job_view_model.dart';
 
-class PostTaskDetailScreen extends StatelessWidget {
+class PostTaskDetailScreen extends StatefulWidget {
   const PostTaskDetailScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
+  State<PostTaskDetailScreen> createState() => _PostTaskDetailScreenState();
+}
+
+class _PostTaskDetailScreenState extends State<PostTaskDetailScreen> {
+  File? galleryFile;
+  final picker = ImagePicker();
+
+  @override
   Widget build(BuildContext context) {
-    print(title);
     return GetBuilder<PostTaskDetailController>(
         init: PostTaskDetailController(),
         builder: (postTaskDetailController) {
           // print(title);
-          return SafeArea(
-            child: GestureDetector(
-              onTap: () {
-                FocusScopeNode currentFocus = FocusScope.of(context);
-                if (!currentFocus.hasPrimaryFocus) {
-                  currentFocus.unfocus();
-                }
-              },
-              child: Scaffold(
-                appBar: CustomAppBar(
-                  backgroundColor: KColors.kPrimary,
-                  actions: [],
-                  title: title,
+          return GestureDetector(
+            onTap: () {
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              if (!currentFocus.hasPrimaryFocus) {
+                currentFocus.unfocus();
+              }
+            },
+            child: Scaffold(
+              appBar: AppBar(
+                leading: const BackButton(
+                  color: Colors.white, // <-- SEE HERE
                 ),
-                body: PageView(
-                  // physics: const NeverScrollableScrollPhysics(),
+                title: Text(widget.title),
+                backgroundColor: KColors.kPrimary,
+              ),
+              body: SafeArea(
+                child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
                   controller: postTaskDetailController.pageController,
                   children: [
                     Container(
@@ -80,7 +93,6 @@ class PostTaskDetailScreen extends StatelessWidget {
                                   }
                                 },
                               ),
-
                               heightBox(0.02),
                               Align(
                                   alignment: Alignment.topLeft,
@@ -88,7 +100,6 @@ class PostTaskDetailScreen extends StatelessWidget {
                                       text: 'Task Detail',
                                       textStyle: KTextStyles().subHeading())),
                               heightBox(0.02),
-
                               CustomTextField(
                                 controller: postTaskDetailController
                                     .descriptionController,
@@ -109,158 +120,55 @@ class PostTaskDetailScreen extends StatelessWidget {
                                 },
                               ),
                               heightBox(0.02),
-
-                              Container(
-                                padding: EdgeInsets.all(
-                                  kHeight(0.01),
+                              GestureDetector(
+                                onTap: () {
+                                  _showPicker(context: context);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(
+                                    kHeight(0.01),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        kHeight(0.03),
+                                      ),
+                                      border:
+                                          Border.all(color: KColors.kPrimary)),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        CupertinoIcons.video_camera,
+                                        color: KColors.kPrimary,
+                                        size: kHeight(0.04),
+                                      ),
+                                      widthBox(0.05),
+                                      CustomText(
+                                          text: 'Add video/Select from gallery',
+                                          textStyle: KTextStyles()
+                                              .subHeading(fontSize: 14))
+                                    ],
+                                  ),
                                 ),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                      kHeight(0.03),
-                                    ),
-                                    border:
-                                        Border.all(color: KColors.kPrimary)),
-                                child: Row(
+                              ),
+                              Center(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      CupertinoIcons.video_camera,
-                                      color: KColors.kPrimary,
-                                      size: kHeight(0.04),
+                                    SizedBox(
+                                      height: 20.h,
                                     ),
-                                    widthBox(0.05),
-                                    CustomText(
-                                        text: 'Add video/Select from gallery',
-                                        textStyle: KTextStyles()
-                                            .subHeading(fontSize: 14))
+                                    SizedBox(
+                                      height: 60.h,
+                                      width: 300.w,
+                                      child: galleryFile == null
+                                          ? const Center(child: Text(' '))
+                                          : Center(
+                                              child: Text(galleryFile!.path)),
+                                    ),
                                   ],
                                 ),
                               ),
-
-                              // Container(
-                              //   height: kHeight(0.2),
-                              //   width: context.width,
-                              //
-                              //   decoration: BoxDecoration(
-                              //
-                              //     borderRadius: BorderRadius.circular(kHeight(0.04),),
-                              //
-                              //     border: Border.all(
-                              //       color: KColors.kPrimary,
-                              //     ),
-                              //   ),
-                              // ),
-                              // Spacer(),
-                              heightBox(0.03),
-                              Center(
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    postTaskDetailController.pickFromCamera();
-                                    postTaskDetailController.update();
-                                  },
-                                  child: Obx(() {
-                                    return CustomText(
-                                      text: postTaskDetailController
-                                                  .base64Image.value ==
-                                              ""
-                                          ? "null"
-                                          : postTaskDetailController
-                                              .base64Image.value,
-                                      textStyle: KTextStyles().normal(),
-                                    );
-                                  }),
-
-                                  // Stack(
-                                  //   children: [
-                                  //     SizedBox(
-                                  //       width: kWidth(context.isTablet ? .22 : .38),
-                                  //       height: kHeight(context.isTablet ? .16 : .2),
-                                  //       child: Center(
-                                  //         child: Container(
-                                  //           width: kWidth(context.isTablet ? .2 : .36),
-                                  //           height: kHeight(context.isTablet ? .14 : .18),
-                                  //           decoration: BoxDecoration(
-                                  //             color: KColors.kPrimary,
-                                  //             border: Border.all(
-                                  //               color: KColors.kSecondary,
-                                  //               width: 1.0,
-                                  //             ),
-                                  //             borderRadius: BorderRadius.circular(kWidth(.03)),
-                                  //             boxShadow: [
-                                  //               BoxShadow(
-                                  //                 color: KColors.kWhite.withOpacity(.2),
-                                  //                 blurRadius: 8,
-                                  //                 offset: const Offset(1, 2),
-                                  //               ),
-                                  //             ],
-                                  //           ),
-                                  //           child: ClipRRect(
-                                  //             borderRadius: BorderRadius.circular(kWidth(.03)),
-                                  //             child: Image.network(
-                                  //               postTaskDetailController.imageEdit.value.toString(),
-                                  //               errorBuilder: (BuildContext context, Object exception,
-                                  //                   StackTrace? stackTrace) {
-                                  //                 return postTaskDetailController.image.value != null
-                                  //                     ? Image.memory(
-                                  //                   postTaskDetailController.image.value!
-                                  //                       .readAsBytesSync(),
-                                  //                   fit: BoxFit.cover,
-                                  //                 )
-                                  //                     : Icon(
-                                  //                   CupertinoIcons.profile_circled,
-                                  //                   size: kWidth(context.isTablet ? .14 : .24),
-                                  //                   color: KColors.kSecondary,
-                                  //                 );
-                                  //               },
-                                  //               loadingBuilder: (BuildContext context, Widget child,
-                                  //                   ImageChunkEvent? loadingProgress) {
-                                  //                 if (loadingProgress == null) {
-                                  //                   return child;
-                                  //                 }
-                                  //                 return Center(
-                                  //                   child: CircularProgressIndicator(
-                                  //                     color: KColors.kSecondary,
-                                  //                     value: loadingProgress.expectedTotalBytes != null
-                                  //                         ? loadingProgress.cumulativeBytesLoaded /
-                                  //                         loadingProgress.expectedTotalBytes!
-                                  //                         : null,
-                                  //                   ),
-                                  //                 );
-                                  //               },
-                                  //               fit: BoxFit.cover,
-                                  //             ),
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //     ),
-                                  //     if (postTaskDetailController.imageEdit.value != null ||
-                                  //         postTaskDetailController.imageEdit.value != "" &&
-                                  //             postTaskDetailController.image.value != null)
-                                  //       Positioned(
-                                  //         right: 0,
-                                  //         top: 0,
-                                  //         child: GestureDetector(
-                                  //           onTap: () {
-                                  //             postTaskDetailController.imageEdit.value = null;
-                                  //             postTaskDetailController.image.value = null;
-                                  //             postTaskDetailController.update();
-                                  //           },
-                                  //           child: CircleAvatar(
-                                  //             backgroundColor: KColors.kWhite,
-                                  //             radius: kWidth(context.isTablet ? .02 : .034),
-                                  //             child: Icon(
-                                  //               Icons.close_rounded,
-                                  //               color: KColors.kRed,
-                                  //               size: kWidth(context.isTablet ? .03 : .06),
-                                  //             ),
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //   ],
-                                  // ),
-                                ),
-                              ),
-
                               heightBox(0.1),
                               PrimaryButton(
                                 width: context.width,
@@ -386,12 +294,12 @@ class PostTaskDetailScreen extends StatelessWidget {
                                                       .copyWith(
                                                     colorScheme:
                                                         const ColorScheme.light(
-                                                      primary: KColors
-                                                          .kPrimary, // header background color
-                                                      onPrimary: KColors
-                                                          .kPrimary, // header text color
-                                                      onSurface: KColors
-                                                          .kPrimary, // body text color
+                                                      primary: KColors.kPrimary,
+                                                      // header background color
+                                                      onPrimary: Colors.white,
+                                                      // header text color
+                                                      onSurface: KColors.kBlack,
+                                                      // body text color
                                                     ),
                                                     textButtonTheme:
                                                         TextButtonThemeData(
@@ -511,7 +419,7 @@ class PostTaskDetailScreen extends StatelessWidget {
                                               address: postTaskDetailController
                                                   .locationController.text,
                                               numberOfBids: 0,
-                                              jobType: title,
+                                              jobType: widget.title,
                                               name: currentUser!.userName);
                                             showSnackBar(context: context, message: 'Job Posted successfully');
                                             Navigator.pop(context);
@@ -534,5 +442,57 @@ class PostTaskDetailScreen extends StatelessWidget {
             ),
           );
         });
+  }
+
+  void _showPicker({
+    required BuildContext context,
+  }) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Wrap(
+            children: <Widget>[
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Gallery'),
+                onTap: () {
+                  getVideo(ImageSource.gallery);
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_camera),
+                title: const Text('Camera'),
+                onTap: () {
+                  getVideo(ImageSource.camera);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future getVideo(
+    ImageSource img,
+  ) async {
+    final pickedFile = await picker.pickVideo(
+        source: img,
+        preferredCameraDevice: CameraDevice.front,
+        maxDuration: const Duration(minutes: 10));
+    XFile? xfilePick = pickedFile;
+    setState(
+      () {
+        if (xfilePick != null) {
+          galleryFile = File(pickedFile!.path);
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(// is this context <<<
+              const SnackBar(content: Text('Nothing is selected')));
+        }
+      },
+    );
   }
 }
